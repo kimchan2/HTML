@@ -1,0 +1,19 @@
+pre{
+   font-size : 20px;
+   background : lightblue;
+   border : 5px double red;
+   padding : 30px;
+   border-left : 10px solid blue;
+}
+
+div{
+   border : 2px solid green;
+   padding : 5px;
+   margin : 5px;
+   width : 60%;
+}
+
+span{
+   color : red;
+   background : yellow;
+}
