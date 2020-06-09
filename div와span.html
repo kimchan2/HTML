@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="ko">
+	<head>
+		<meta charset = "UTF-8">
+		<title></title>
+		
+		<link rel="stylesheet" href="./css/mycss.css" type="text/css">
+		/*외부 스타일, type은 안써도 된다*/
+		
+		<style>
+		/*내부 스타일*/
+			span{
+				background : pink;
+			}
+			div {
+				border : 2px dotted red;
+				margin : 10px;
+				padding : 10px;
+				height : 350px;
+			}
+			img {
+				width : 100%;
+				height : 100%;
+			}
+			div.in{
+				border : 2px dotted orange;
+				box-sizing : border-box;
+				width : 40%;
+				height : 200px;
+				float : left;
+			}
+			div#in1{
+				box-sizing : border-box;
+				width : calc(30% - 2%); /* -앞뒤에 공백 필수 브라우저를 줄일때마다 2%씩 만큼 줄어듦*/
+			}
+			div#in2{
+				width : calc(60% - 10px);
+				overflow : auto;
+			}
+			
+			h2{
+				border : 2px solid blue;
+				text-align : center;
+			}
+			
+			
+		</style>
+	</head>
+	
+	<body>
+		<pre>
+		외부 스타일파일을 적용하는 방법
+		내부와 외부에 같은게 있으면 내부가 적용됨
+		&lt;link rel="stylesheet" href="./css/mycss.css" type="text/css"&gt;
+		/*type은 안써도 된다*/
+		
+			&lt;div&gt; : 블록요소, 자동으로 줄이바뀜,
+				크기(width, height)를 지정 가능
+				
+			그외 블럭요소의 예 : p, pre, h1, h2, h3, h4, h5, h6
+			
+			&lt;span&gt; : 인라인 요소, 자동으로 줄이바뀌지 않음,
+				크기(width, height)를 지정 불가능
+				img태그는 예외로 width, height 지정이 가능하다
+			그외 인라인요소의 예 : em, sup, sub, b, i, strong, img
+			
+			스타일을 위하여 id 또는 class속성을 지정
+			id속성 : 유일한 값으로 지정, style에서 #으로 접근
+			class속성 : 같은 이름이 여러개 올 수 있음 style 에서 .으로 접근
+			
+			블럭요소의 태그를 옆으로 배치하기 위한 style : float : left, right
+			
+			브라우저의 크기에 따라 각 html 요소들도 크기가 상대적으로 변해야 함
+			box-sizing : border-box; 테두리를 기준으로 크기 조절
+			box-sizing : content-box; 내용을 기준으로 크기 조절
+			
+			div요소밖으로 넘치는 내용처리, style에서 overflow 지정
+			overflow : auto;
+			overflow : hidden;
+			overflow : scroll;
+			
+		</pre>
+		
+		<div class = "out">
+			<h2>사 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 자</h2>
+			<div class = "in" id = "in1">
+				<img src = "./images/사자.jpg">
+			</div>
+			<div class = "in" id = "in2">
+				아프리카와 인도에 서식하는 식육목(食肉目) 고양잇과 포유류. 북아프리카와 중동, 서아시아, 유럽, 아라비아에서도 과거엔 서식했었으나 유럽 지역에서는 기원전부터 씨가 말랐고, 인도를 제외한 아시아 지역에서도 19~20세기부터 하나둘씩 사라져갔다. 북아프리카에서도 1920년 모로코에서 사살되어 이 지역들의 야생 사자는 멸종된 상태이다. 지금은 대부분이 남아프리카 사바나 일대에 서식하고 있고, 남서아프리카의 나미비아 사막[12]에 밀렵으로 멸종된 줄 알았던 사막 사자가 살아남아 있으며 사헬 지대에도 일부 살아남아 있다. 인도의 기르숲이란 곳에도 사자가 약간 남아있기는 하다. 현재도 개체수가 계속 감소 중인 사자기에, 나중엔 일부 보호구역에서 소수만이 남을것이다. 간지나는 비주얼과 강인한 사냥 능력으로 오랫동안 '백수의 왕'으로 불리우며 왕의 상징으로 여겨지는 등 인기를 누려온 동물이다. 동양권에서도 호랑이와 쌍벽으로 여겨지지만 호랑이와 달리 또한 모든 동물들 중에서 유독 사자(獅子)에게만 공자(孔子), 맹자(孟子)처럼 자(子)를 붙이는 걸 보면 사자의 위상을 알 수 있다.
+			</div>
+		</div>
+		
+		<div class = "out">
+			<h2>사 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 자</h2>
+			<div class = "in" id = "in1">
+				<img src = "./images/사자.jpg">
+			</div>
+			<div class = "in" id = "in2">
+				아프리카와 인도에 서식하는 식육목(食肉目) 고양잇과 포유류.
+				북아프리카와 중동, 서아시아, 유럽, 아라비아에서도 과거엔 서식했었으나
+				유럽 지역에서는 기원전부터 씨가 말랐고, 인도를 제외한 아시아 지역에서도
+				19~20세기부터 하나둘씩 사라져갔다. 북아프리카에서도 1920년 모로코에서 사살되어
+				이 지역들의 야생 사자는 멸종된 상태이다. 지금은 대부분이 남아프리카 사바나 일대에
+				서식하고 있고, 남서아프리카의 나미비아 사막[12]에 밀렵으로 멸종된 줄 알았던
+				사막 사자가 살아남아 있으며 사헬 지대에도 일부 살아남아 있다. 인도의 기르숲이란
+				곳에도 사자가 약간 남아있기는 하다. 현재도 개체수가 계속 감소 중인 사자기에,
+				나중엔 일부 보호구역에서 소수만이 남을것이다. 간지나는 비주얼과 강인한 사냥 능력으로
+				오랫동안 '백수의 왕'으로 불리우며 <span>왕의 상징</span>으로 여겨지는 등 인기를 누려온 동물이다.
+				동양권에서도 호랑이와 쌍벽으로 여겨지지만 호랑이와 달리 또한 모든 동물들 중에서
+				유독 사자(獅子)에게만 공자(孔子), 맹자(孟子)처럼 자(子)를 붙이는 걸 보면
+				사자의 위상을 알 수 있다.
+			</div>
+		</div>
+		
+	</body>
+</html>
+
+
+
+
+
+
+
+
+

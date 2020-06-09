@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/mycss.css">
+
+<style>
+	label, span{
+		width : 100px;
+		height : 30px;
+		display : inline-block;
+		<!-- border : 0.5px dotted red; -->
+	}
+	span{
+		margin : 5px;
+	}
+	.data{
+		width : 500px;
+		background : pink;
+		color : blue;
+	}
+	#varea{
+		height : auto;
+		vertical-align : top;
+	}
+</style>
+
+<script type="text/javascript">
+	function butPro(){
+		//확인 버튼 클릭시 입력한 값들을 가져와서 - value
+		//id가 result인 곳에 출력한다 - innerHTML
+		//var vname = document.ff.name.value; var 생략가능
+		//let vname = document.ff.name.value; let 생략가능
+		vname = document.ff.name.value;
+		vid = document.ff.id.value;
+		vpass = document.ff.pass.value;
+		vaddr = document.ff.addr.value;
+		vtel = document.ff.tel.value;
+		varea = document.ff.area.value;
+		//varea의 값을 엔터처리(입력시 엔터 : \r\n ==> <br>)
+		//replace(/old/g, new)
+		varea = varea.replace(/\r/g, "").replace(/\n/g,"<br>");
+		
+		str = "<span>이름 : </span><span class='data'>" + vname + "</span><br>";
+		str += "<span>아이디 : </span><span class='data'>" + vid + "</span><br>";
+		str += "<span>전화번호 : </span><span class='data'>" + vtel + "</span><br>";
+		str += "<span>주소 : </span><span class='data'>" + vaddr + "</span><br>";
+		
+		str += "<span>내용 : </span><span id='varea' class='data'>" + varea + "</span><br>";
+		
+		document.getElementById("result").innerHTML = str;  
+	}
+</script>
+
+</head>
+<body>
+	<pre>
+		label : 문자, 인라인 요소
+				인라인요소는 크기 조절이 안된다
+				
+		display : inline;
+		display : block;
+		display : inline-block; 인라인 이면서 블럭요소의 속성을 동시에 갖는다. 줄은 바뀌지 않고 크기 조절이 가능하다
+		
+		입력요소(input 요소, textarea)의 값을 가져오거나 새로운 값으로 설정 - value
+		입력요소가 아닌 다른 요소에 값을 가져오거나 새로운 값으로 설정 - innerHTML, textContent
+		
+		textarea : 여러줄 입력, 출력시에도 줄이 바뀌도록 한다
+		varea = document.ff.area.value;
+		//varea의 값을 엔터처리(입력시 엔터 : \r\n ==> &lt;br&gt;)
+		//replace(/old/g, new)
+		varea = varea.replace(/\r/g, "").replace(/\n/g,"&lt;br&gt;");
+	</pre>
+	
+	<div>
+		<form name="ff" action="label_test.jsp" method="post">
+			<label>이름</label>
+		  	<input type="text" name="name"><br>
+		    
+		  	<label>아이디</label>
+		  	<input type="text" name="id"><br>
+		    
+		    <label>비밀번호</label>
+		    <input type="password" name="pass" value="1234"><br>
+		    
+		    <label>주소</label>
+		    <input type="text" name="addr" value="대전"><br>
+		    
+		    <label>전화번호</label>
+		    <input type="text" name="tel" value="1234"><br>
+		    
+		    <label>내용</label> <br>
+		    <textarea name="area" rows="10" cols="50"></textarea>
+		    <br><br>
+		     
+		  	<input type="submit" value="전송">
+          	<input type="reset" value="취소">
+          	<input type="button" value="확인" onclick="butPro()">
+		</form>
+	</div>
+	
+	<div id="result">
+	
+	</div>
+	
+</body>
+</html>
