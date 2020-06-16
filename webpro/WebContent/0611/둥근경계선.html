@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/mycss.css">
+<style>
+	div{
+		width : 300px;
+		height : 300px;
+		border : 5px solid blue;
+		/* border-width : 10px 20px;
+		border-style: dotted; */
+		border-radius : 50px;
+		float: left;
+	}
+	#d2{
+		border-color: green;
+		border-style: inset;
+		border-radius: 50%; /*원*/
+	}
+	#d3{
+		border-width: 5px 10px;
+		border-color: red;
+		border-radius: 15px 50px 30px 5px;
+	}
+	#d4{
+		border-radius: 15px 50px 30px;
+	}
+	#d5{
+		border-radius : 15px 50%;
+		background-image: linear-gradient(red, yellow);
+		/*background : -webkit-linear-gradient(bottom right, red, yellow, green);*/
+   		/*background-image : linear-gradient(to bottom right, red, yellow, green); */
+	}
+	#d6{
+		border-radius : 15px 30%;
+		background : -webkit-linear-gradient(bottom right, red, blue, green);
+	}
+	#d7{
+		border-radius : 15px 50px;
+		background-image : linear-gradient(to bottom right, red, yellow, green);
+	}
+	h1{
+		/* background: #f1d1a9; */
+ 		/* background: rgb(255, 210, 15); */
+		background: rgb(255, 210, 15, 0.3);
+		width: 50%;
+		margin-left: 20%;
+		margin-bottom: 50px;
+		text-align: center;
+		letter-spacing: 50px;
+		board-radius: 20px;
+		padding-top: 10px;
+		padding-bottom: 10px;
+		box-shadow: 40px 30px 45px red;
+		
+	}
+</style>
+</head>
+<body>
+	<h1>
+		둥근경계선
+	</h1>
+	<div id="d1">
+		border-radius : 50px;
+	</div>
+	
+	<div id="d2">
+		border-color: green;<br>
+		border-style: inset;<br>
+		border-radius: 50%;<br>
+	</div>
+	
+	<div id="d3">
+		border-width: 5px 10px;<br>
+		border-color: red;<br>
+		border-radius: 15px 50px 30px 5px;<br>
+	</div>
+	
+	<div id="d4">
+		border-radius: 15px 50px 30px;
+	</div>
+	
+	<div id="d5">
+		border-radius : 15px 50%;<br>
+		background-image: linear-gradient(red, yellow);<br>
+		/*background : -webkit-linear-gradient(bottom right, red, yellow, green);*/<br>
+   		/*background-image : linear-gradient(to bottom right, red, yellow, green); */<br>
+	</div>
+	
+	<div id="d6">
+		border-radius : 15px 30%;<br>
+		background : -webkit-linear-gradient(bottom right, red, yellow, green);<br>
+	</div>
+	
+	<div id="d7">
+		border-radius : 15px 50px;<br>
+		background-image : linear-gradient(to bottom right, red, yellow, green);<br>
+	</div>
+</body>
+</html>

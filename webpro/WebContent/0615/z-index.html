@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/mycss.css">
+<style>
+	div{
+		width: 150px;
+		height: 100px;
+		position: absolute;
+	}
+	#d1{
+		background: yellow;
+		top: 300px;
+	}
+	#d2{
+		background: green;
+		top: 320px;
+		z-index: 11;
+	}
+	#d3{
+		background: gray;
+		top: 325px;
+		z-index: 10;
+	}
+	#d4{
+		background: lightblue;
+		top: 330px;
+	}
+</style>
+</head>
+<body>
+	<pre>
+		z-index: 여러개의 요소들이 겹쳐있을 때 보여지는 요소의순서를 지정함
+		0이 기준이고 위로 올라올수록 큰값
+		#d3{
+			background: gray;
+			top: 125px;
+			z-index: 10;
+		}
+	</pre>
+	<div id="d1">
+		#d1
+	</div>
+	<div id="d2">
+		#d2
+	</div>
+	<div id="d3">
+		#d3
+	</div>
+	<div id="d4">
+		#d4
+	</div>
+</body>
+</html>

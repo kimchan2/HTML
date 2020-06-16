@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/mycss.css">
+<style>
+	header, nav, section, footer{
+		float: left;
+		padding: none;
+		margin: none;
+		box-sizing: border-box; /* content-box*/
+	}
+	header{
+		width: calc(100% - 2%); /* - 앞뒤에 반드시 공백넣을 것*/
+		height: auto;
+		background: pink;
+	}
+	nav{
+		width: calc(30% - 1%);
+		height: 300px;
+		background: orange;
+	}
+	section{
+		width: calc(70% - 1%);
+		height: 300px;
+		background: yellow;
+	}
+	footer{
+		width: calc(100% - 2%);
+		height: 50px;
+		background: maroon;
+		text-align: center;
+		color: white;
+	}
+	h1{
+		text-align: center;
+		margin-top: 5px;
+		margin-bottom: 5px;
+	}
+	h2{
+		padding-left: 10px;
+	}
+	h4{
+		margin: 0;
+		margin-top: 12.5px;
+		margin-bottom: 12.5px;
+		height: 25px;
+		text-align: center;
+	}
+	
+	#u1{
+		padding: 0;
+		margin: 0;
+		margin-left: 40px;
+		margin-bottom: 20px;
+	}
+	#홍길동{
+		width: 100px;
+		height: 100px;
+		margin-left: 40px;
+	}
+	h3, article{
+		margin-left: 20px;
+	}
+	p{
+		margin: 0px;
+		margin-left: 40px;
+		margin-top: 10px;
+	}
+</style>
+</head>
+<body>
+	<header>
+		<h1 id="1h1">My Blog Page</h1>
+	</header>
+	<nav>
+		<h2>Links</h2>
+		<ul id="u1">
+			<li><a target="_blank" href="https://www.w3.org/">W3C</a></li>
+			<li><a target="_blank" href="https://www.mozilla.org/ko/">MOZILLA</a></li>
+			<li><a target="_blank" href="https://www.htmldog.com/">HTML Dogs</a></li>
+		</ul>
+		<img id="홍길동" src="../images/홍길동.jpg">
+		<p>김찬희</p>
+	</nav>
+	<section id="content">
+		<h3>Semantic Tags</h3>
+		<article>시멘틱 요소(Semantic elements)들은 브라우저에게 요소의 의마나 목적을 명확하게 알려주는 요소이다.</article>
+		<h3>div와 span</h3>
+		<article>div은 "divide"의 약자로서 페이지를 논리적인 섹션으로 분리하는데 사용되는 태그이다. span요소는 인라인 요소로서 텍스트를 위한 컨테이너로 사용할 수 있다.</article>
+	</section>
+	
+	<footer>
+		<h4>Copyright (c) 2020 Kim</h4>
+	</footer>
+</body>
+</html>

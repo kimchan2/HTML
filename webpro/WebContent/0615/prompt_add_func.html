@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/mycss.css">
+<style>
+	#result{
+		font-size: 1.2em;
+	}
+</style>
+<script type="text/javascript">
+	
+	function proc() {
+		x = parseInt(prompt("첫 번째 수 입력"));
+		y = parseInt(prompt("두 번째 수 입력"));
+		
+		res = x + y;
+		print(x, y);
+	}
+
+	function inputProc() {
+		vx = parseInt(document.querySelector("#ix").value);
+		vy = parseInt(document.querySelector("#iy").value);
+		
+		res = vx + vy;
+		print(vx, vy);
+	}
+	
+	function print(x, y) {
+		str = x + " + " + y + " 의 결과는 " + (x+y) + " 입니다.";
+		vid = document.querySelector("#result");
+		vid.textContent = str;
+	}
+</script>
+</head>
+<body>
+	<pre>
+		버튼을 클릭하면 두개의 수를 입력하여 더하기를 한다
+		id가 reslut인 div요소에 출력
+		
+		script에서 body요소에 접근하는 방법
+		document.getElementById("id이름")
+		document.querySelector("#id이름")
+		document.getElementsClassName("class이름")
+		document.querySelector(".class이름")
+		result에 출력 : textContent //value, innerHTML
+		
+		document.getElementsByTagName("input"); // input태그에 접근
+	</pre>
+	<input type="button" value="확인" onclick="proc()"> 
+	<button type="button" onclick="proc()">확인</button>
+	<br><br>
+	
+	<div>
+		x : <input id="ix" type="text"><br>
+		y : <input id="iy" type="text"><br>
+		<input type="button" value="확인" onclick="inputProc()">
+	</div>
+	
+	<h1>결과</h1>
+	<div id="result">
+		
+	</div>
+		
+</body>
+</html>

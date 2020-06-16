@@ -1,0 +1,230 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/mycss.css">
+<style>
+</style>
+<script>
+  function ifproc1(){
+	 su1 =  parseInt(prompt("첫번째 수")) ;
+	 su2 =  parseInt(prompt("두번째 수"));
+	 
+	 op = prompt("연산자 입력 ");/*  +,  - , * ,/  */
+	 if(op == "+"){
+		res = su1 + su2; 
+	 }else if(op =="-" ){
+		 res = su1 - su2; 
+	 }else if(op == "*"){
+		 res = su1 * su2;
+	 }else if(op == "/"){
+		 res = su1 / su2;
+	 }
+	 
+	 str = "첫번재 수  " + su1 + "<br>";
+	 str += "두번째 수 " + su2 + "<br>";
+	 str += "연산자 " + op + "<br>";
+	 //34 / 23 = 
+     str += su1 + op + su2  + "=" + res;
+	   
+	 document.getElementById('result1').innerHTML = str;
+  }
+  
+  function proc2(){
+	 su1 =  parseInt(prompt("첫번째 수")) ;
+	 su2 =  parseInt(prompt("두번째 수"));
+		 
+	 op = prompt("연산자 입력 ");/*  +,  - , * ,/  */
+	 
+	 switch(op){
+	 case "+" :
+		 res = su1 + su2;
+		 break;
+	 case "-" :
+		 res = su1 - su2;
+		 break;
+	 case "*" :
+		 res = su1 * su2;
+		 break;
+	 case "/" :
+		 res = su1 / su2;
+		 break;
+	 }
+	 
+	 str = "첫번재 수  " + su1 + "<br>";
+	 str += "두번째 수 " + su2 + "<br>";
+	 str += "연산자 " + op + "<br>";
+	 str += su1 + op + su2  + "=" + res;
+	   
+	 document.getElementById('result2').innerHTML = str;
+	 
+  }
+  
+  function proc3(){
+	  su = prompt("점수입력", "0~100사이");
+	  if(su >= 90){
+		  res  = "A 학점" ;
+	  }else if( su >= 80){
+		  res  = "B 학점" ;
+	  }else if( su >= 70){
+		  res  = "C 학점" ;
+	  }else if(su >=60){
+		  res  = "D 학점" ;
+	  }else {
+		  res  = "F 학점" ;
+	  }
+	  
+	  str = "입력 점수 : " + su + "<br>";
+	  str += "결과 : "  + res;
+	  
+	  document.getElementById('result3').innerHTML = str;
+   }
+  function proc4(){
+	  
+	  su = parseInt(prompt("점수입력", "0~100사이"));
+	  
+		  
+	  switch(parseInt(su/10)){
+	  case 10 :
+	  case 9 :
+		  res  = "A 학점" ;
+		  break;
+	  case 8 :
+		  res  = "B 학점" ;
+		  break;
+	  case 7 :
+		  res  = "C 학점" ;
+		  break;
+	  case 6 :
+		  res  = "D 학점" ;
+		  break;
+	  default :
+		  res  = "F 학점" ;
+		  break
+	  }
+	  str = "입력 점수 : " + su + "<br>";
+	  str += "결과 : "  + res;
+	  
+	  document.getElementById('result4').innerHTML = str;
+  }
+  
+	function proc5() {
+		a = prompt("첫번째 사람", "가위바위보");
+		b = prompt("두번째 사람", "가위바위보");
+		  
+		if(a == b){
+			res = " 비겼다" ;
+		}else if(a =="가위" && b =="보" || a == "바위" && b =="가위" || a == "보" && b == "바위"){
+			res ="첫번째 사람 이김" ;
+	
+		}else {
+			res ="두번째 사람 이김" ;
+		}
+		
+		str = "첫번째 사람 " + a + "<br>";
+		str += "두번째 사람 " + b + "<br>";
+		str += "결과  " + res + "<br>";
+		document.getElementById('result5').innerHTML = str;
+		
+		/*
+		user1 = prompt("가위, 바위, 보");
+		user2 = prompt("가위, 바위, 보");
+		switch (user1) {
+		case "가위":
+			switch (user2) {
+			case "가위":
+				str = "비겼습니다";
+				break;
+			case "바위":
+				str = "유저2 승리";
+				break;
+			case "보":
+				str = "유저1 승리";
+				break;
+			}
+			break;
+		case "바위":
+			switch (user2) {
+			case "가위":
+				str = "유저1 승리";
+				break;
+			case "바위":
+				str = "비겼습니다";
+				break;
+			case "보":
+				str = "유저2 승리";
+				break;
+			}
+			break;
+		case "보":
+			switch (user2) {
+			case "가위":
+				str = "유저2 승리";
+				break;
+			case "바위":
+				str = "유저1 승리";
+				break;
+			case "보":
+				str = "비겼습니다";
+				break;
+			}
+			break;
+		}
+		document.getElementById("result5").textContent = str; */
+	}
+</script>
+</head>
+<body>
+<div class="box">
+  <h2>iftest</h2>
+    두개의 수와 하나의 연산자를 입력(prompt)하여 연산을 수행하는 프로그램 <br>
+   입력 : prompt <br>
+   출력 : div <br>
+  <input type="button" value="확인" onclick="ifproc1()">
+  <div id="result1"></div>
+</div>
+
+<div class="box">
+  <h2>switchtest</h2>
+    두개의 수와 하나의 연산자를 입력(prompt)하여 연산을 수행하는 프로그램 <br>
+   입력 : prompt <br>
+   출력 : div <br>
+  <input type="button" value="확인" onclick="proc2()">
+  <div id="result2"></div>
+</div>
+
+<div class="box">
+  <h2>if 학점구하기 </h2>
+    0~100사이의 수를 입력하여 학점구하기  <br>
+       입력 : prompt <br>
+      출력 : div <br>
+  <input type="button" value="확인" onclick="proc3()">
+  <div id="result3"></div>
+</div>
+
+
+<div class="box">
+  <h2>switch 학점구하기 </h2>
+   0~100사이의 수를 입력하여 학점구하기 <br>
+      입력 : prompt <br>
+      출력 : div <br>
+  <input type="button" value="확인" onclick="proc4()">
+  <div id="result4"></div>
+</div>
+
+<div class="box">
+  	<h2>if 가위바위보 </h2>
+   	두 사람의 가위바위보를 입력하여 승자구하기<br>
+  	입력 : prompt <br>
+         출력 : div <br>
+  <input type="button" value="확인" onclick="proc5()">
+  <div id="result5"></div>
+</div>
+
+</body>
+</html>
+
+
+

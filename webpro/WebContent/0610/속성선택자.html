@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/mycss.css">
+<style>
+	img{
+		width : 100px;
+		height : 100px;
+		margin: 10px;
+	}
+	
+	p{
+		font-size: 1.5em;
+	}
+	
+	p[title]{
+		background: yellow; /* title속성이 있는 p태그 옵션지정 */
+	}
+	#p1{
+		color: red;
+	}
+	
+	img[alt="커피"]{
+		border : 3px solid green;
+	}
+	#im1{
+		border : 5px dotted hotpink;
+	}
+	img[id="im2"]{
+		border : 10px inset green;
+	}
+	.cim{
+		width : 150px;
+		height : 150px;
+	}
+	img[class="cim"]{
+		border : 10px dotted pink;
+	}
+</style>
+</head>
+<body>
+	<pre>
+		속성을 이용한 접근선택자
+		p{
+			font-size: 1.5em;
+		}
+		title속성을 갖고 있는 p태그를 선택
+		p[title]{
+			background: yellow; /* title속성이 있는 p태그 옵션지정 */
+		}
+		#p1{
+			color: red;
+		}
+	</pre>
+	<p id="p1">무궁화 꽃이 피었습니다</p>
+	<p title="바다">뜨거운 바다에 마스크 쓰고 물놀이를 한다나..</p>
+	
+	<pre>
+		alt속성값이 커피인 img 선택
+		img[alt="커피"]{
+			border : 3px solid green;
+		}
+		#im1{
+			border : 5px dotted hotpink;
+		}
+		id속성값이 im2인 img 선택
+		img[id="im2"]{
+			border : 10px inset green;
+		}
+		class명이 cim인 클래스 선택
+		.cim{
+			width : 150px;
+			height : 150px;
+		}
+		img[class="cim"]{
+			/*id 속성이 class속성 보다 우선순위가 높다*/
+			border : 10px dotted pink;
+		}
+	</pre>
+	<img id="im1" class="cim" src="../images/Penguins.jpg" alt="펭귄" title="펭귄">
+	<img id="im2" class="cim" src="../images/Koala.jpg" alt="코알라" title="코알라">
+	<img id="im3" src="../images/coffee1.jpg" alt="커피" title="커피">
+</body>
+</html>
