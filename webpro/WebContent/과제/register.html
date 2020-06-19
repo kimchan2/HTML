@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	label, span{
+		width : 120px;
+		height : 30px;
+		display : inline-block;
+		margin-left: 20px;
+	}
+	#gender{
+		margin-left: 80px;
+	}
+	input[type="radio"]{
+		margin-left: 50px;
+	}
+	input[type="submit"], input[type="reset"]{
+		width: 150px;
+	}
+	div{
+		border: 2px dotted gray;
+		width: 420px;
+		height: 370px;
+		margin-left: 20px;
+		margin-top: 30px;
+	}
+	#info{
+		margin-top: 0px;
+		border: none;
+		position: absolute;
+		top: 20px;
+		left: 30px;
+		background: white;
+		width: auto;
+		height: auto;
+	}
+</style>
+</head>
+<body>
+	<div id="info">회원정보입력</div>
+	<div>
+		<br>
+		<form name="ff" action="label_test.jsp" method="post">
+		  	<label>아이디</label>
+		  	<input type="text" name="id">
+		  	<input type="button" value="중복검사" onclick=""><br>
+		    
+		    <label>패스워드</label>
+		    <input type="password" name="pass" value="1234"><br>
+
+		    <label>패스워드 확인</label>
+		    <input type="password" name="pass_check" value="1234"><br>
+		    
+		    <label>이름</label>
+		  	<input type="text" name="name"><br>
+		    
+		    <label>휴대폰 번호</label>
+		    <input type="text" name="tel" value="1234"><br>
+
+		    <label>이메일</label>
+		    <input type="email" name="email" value="@gmail.com"><br>
+		    
+		    <label>생일</label>
+			<input type="date" name="birth" value=""><br>
+			
+		    <label>홈페이지</label>
+		    <input type="text" name="homepage" value=".com"><br>
+			
+			<input type="radio" name="gender" id="male" value="male">
+			<label id="gender" for="male">남성</label><br>
+			<input type="radio" name="gender" id="female" value="female">
+			<label id="gender" for="female">여성</label><br>
+		    <br>
+		     
+		  	<input type="submit" value="제출">
+          	<input type="reset" value="초기화">
+		</form>
+	</div>
+</body>
+</html>

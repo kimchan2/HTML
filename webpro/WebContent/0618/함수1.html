@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/mycss.css">
+<style>
+span {
+   border : 2px dotted pink;
+   display : inline-block;
+   width : 100px;
+   height : 30px;
+   vertical-align: middle;
+}
+</style>
+<script>
+  function proc1(){
+	  //입력한 값 가져오기 
+	  vx = document.querySelector('#x').value;
+	  vy = document.querySelector('#y').value;
+	  
+	 vx =  parseInt(vx);
+	 vy =  parseInt(vy);
+	 
+	 sum = vx + vy ;
+	 
+	 document.querySelector('#sum').value = sum;
+	 document.querySelector('#sp1').innerHTML = vx;
+	 document.querySelector('#sp2').innerHTML = vy;
+	 document.querySelector('#sp3').innerHTML = sum;
+  }
+</script>
+</head>
+<body>
+
+<div class="box">
+   <h2>1.함수호출  </h2>
+   
+          첫번째 :<input type="text" id="x"><br>
+	  두번째 :<input type="text" id="y"><br>
+	  결과 : <input type="text" id="sum"><br>
+   
+   <input type="button" value="확인" onclick="proc1()">
+   <div id="result1">
+      <p>첫번째 값 :<span id="sp1"></span> </p>
+      <p>두번째 값 :<span id="sp2"></span> </p>
+      <p>결과 :<span id="sp3"></span> </p>
+   </div>
+</div>
+</body>
+</html>

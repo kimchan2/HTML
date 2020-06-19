@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/mycss.css">
+<style>
+</style>
+
+ <script>
+ window.onload = function(){
+	 res ="";
+	  for(i=1; i<=10 ; i++){
+		  for(k=1; k<=10; k++){
+			  if( (i + k) % 3 != 0) continue;
+			  res += "i= " + i + " k= " + k + "<br>" ;
+		  }
+	  }
+	  //window.alert(res);
+	  console.log(res);
+	  document.querySelector("#result1").innerHTML = res;
+ }
+  
+</script> 
+
+</head>
+<body>
+<pre>
+  버튼 없이 실행한다 
+  실행하자마자 결과가 출력 
+ window.onload = function() { 
+      코딩 기술 - 
+   document.querySelector('#result1')
+ }
+</pre>
+  <div class="box">
+ 	<h2>2. 1~100 짝수합구하기 </h2>
+            다중 for문을 이용해서 1~ 10 까지 중   <br>
+      i와 k의 더한 합이 3의 배수일때만 출력<br>
+      -continue를 이용<br>
+  <!--   <input type="button" value="확인" onclick="proc1()"> -->
+    <div id="result1"></div>
+  </div>
+  
+</body>
+</html>

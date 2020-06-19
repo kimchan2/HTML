@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/mycss.css">
+<style>
+</style>
+<script type="text/javascript">
+	// 리터럴(상수) 객체 정의 생성, 생성
+	function proc1() {
+		rect = {
+				width : 10,
+				height : 4,
+				getArea : function(){
+					return this.width * this.height
+				},
+				getCircum : function() {
+					return (this.width + this.height) * 2;
+				}
+		}
+
+		rect.name = "사각형";
+// 		res = "가로 : " + rect.width + "<br>";
+// 		res += "세로 : " + rect.height + "<br>";
+	
+		res = `이름 : ${rect.name} <br> 가로 : ${rect.width} <br> 세로 : ${rect.height} <br>
+			       면적 : ${rect.getArea()} <br> 둘레 : ${rect.getCircum()} <br>`;
+		document.querySelector("#result1").innerHTML = res;
+	}
+	
+	function proc2() {
+		function rect(w, h) {
+			this.width = w;
+			this.height = h;
+			
+			this.getArea = function() {
+				return this.width * this.height;
+			}
+			
+			this.getCircum = function() {
+				return (this.width + this.height) * 2;
+			}
+		}
+		
+		// 이름, 가로, 세로 길이를 입력 -prompt()
+		rname = prompt("이름을 입력하세요")
+		rw = parseInt(prompt("가로를 입력하세요"));
+		rh = parseInt(prompt("세로를 입력하세요"));
+		
+		ar = new rect(rw, rh);
+	
+		ar.name = rname;
+		res = `이름 : ${ar.name} <br> 가로 : ${ar.width} <br> 세로 : ${ar.height} <br>
+			       면적 : ${ar.getArea()} <br> 둘레 : ${ar.getCircum()} <br>`;
+		document.querySelector("#result2").innerHTML = res;
+	}
+	
+</script>
+</head>
+<body>
+	<div class="box">
+		<h2>1. Rect객체</h2>
+		- 상수에 의한 생성 - rect = {}
+		- 속성 : width, height
+		- 메소드 : getArea(), getCircum()
+		<input type="button" value="확인" onclick="proc1()">
+		<div id="result1"></div>
+	</div>
+
+	<div class="box">
+		<h2>2. Rect객체</h2>
+		- 상수에 의한 생성 - function rect(w, h){}
+		- 속성 : width, height
+		- 메소드 : getArea(), getCircum()
+		<input type="button" value="확인" onclick="proc2()">
+		<div id="result2"></div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/mycss.css">
+<style>
+</style>
+<script>
+	let a = ["사과", "바나나", "딸기", "포도", "사과", "수박", "참외", "사과"]
+	function proc1() {
+		item = prompt("찾을 과일을 입력하세요");
+		
+		idx = a.indexOf(item);
+		
+		if(idx >= 0){
+// 			res = "찾는 과일은 " + a.indexOf(item) + "에 있습니다";
+			res = `찾는 과일은 ${a.indexOf(item)}에 있습니다.`;
+		}else{
+			res = `찾는 과일  ${item}이(가) 없습니다.`;
+		}
+		
+		document.querySelector("#result1").innerHTML = res;
+	}
+	
+	function proc2() {
+		item = prompt("찾을 과일을 입력하세요");
+		
+		idx = a.lastIndexOf(item);
+		
+		if(idx >= 0){
+// 			res = "찾는 과일은 " + a.indexOf(item) + "에 있습니다";
+			res = `찾는 과일은 ${a.lastIndexOf(item)}에 있습니다.`;
+		}else{
+			res = `찾는 과일  ${item}이(가) 없습니다.`;
+		}
+		
+		document.querySelector("#result2").innerHTML = res;
+	}
+	
+	function proc3() {
+		idx = 0;
+		res = "";
+		item = prompt("찾을 과일을 입력하세요");
+		while(true){
+			idx = a.indexOf(item, idx);
+			if(idx == -1) break;
+			else if(idx >= 0) res += `${item}는 ${idx}에 있습니다<br>`;
+			idx++;
+			
+		}
+		document.querySelector("#result3").innerHTML = res;
+	}
+	
+	function proc4() {
+		res = `원래 배열 ${a}<br>`;
+		
+		// 새로 추가할 항목 입력
+		newItem = prompt("추가항목 입력");
+		a.push(newItem);
+		
+		res += `추가 후 배열 ${a}<br>`;
+		document.querySelector("#result4").innerHTML = res;
+	}
+	
+	function proc5() {
+		res = `원래 배열 ${a}<br>`;
+		a.pop();		
+
+		res += `삭제 후 배열 ${a}<br>`;
+		document.querySelector("#result5").innerHTML = res;
+	}
+	
+	function proc6() {
+		res = `원래 배열 ${a}<br>`;
+		newItem = prompt("추가항목 입력");
+		addEl = a.unshift(newItem);		
+
+		res += `추가된 후 길이 : ${addEl}<br>추가 후 배열 ${a}<br>`;
+		document.querySelector("#result6").innerHTML = res;
+		
+	}
+	
+	function proc7() {
+		res = `원래 배열 ${a}<br>`;
+		remove = a.shift();		
+
+		res += `삭제된 값 : ${remove}<br>shift 후 배열 ${a}<br>`;
+		document.querySelector("#result7").innerHTML = res;		
+	}
+</script>
+</head>
+<body>
+
+	<div class="box">
+		<h2>1. 배열 - 검색</h2>
+		a = ["사과", "바나나", "딸기", "포도", "사과", "수박", "참외", "사과"]<br>
+		- indexOf(item, start)<br>
+		- lastIndexOf(item, start)<br>
+		<input type="button" value="indexOf" onclick="proc1()">
+		<input type="button" value="lastIndexOf" onclick="proc2()">
+		<input type="button" value="indexOf(중복찾기)" onclick="proc3()">
+		<div id="result1"></div>
+		<div id="result2"></div>
+		<div id="result3"></div>
+	</div>
+
+	<div class="box">
+		<h2>2. 배열 - 추가/삭제</h2>
+		a = ["사과", "바나나", "딸기", "포도", "사과", "수박", "참외", "사과"]<br>
+		- push() / pop()<br>
+		- unshift() / shift()<br>
+		<input type="button" value="push" onclick="proc4()">
+		<input type="button" value="pop" onclick="proc5()">
+		<input type="button" value="unshift" onclick="proc6()">
+		<input type="button" value="shift" onclick="proc7()">
+		<div id="result4"></div>
+		<div id="result5"></div>
+		<div id="result6"></div>
+		<div id="result7"></div>
+	</div>
+</body>
+</html>

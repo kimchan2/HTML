@@ -1,0 +1,27 @@
+@CHARSET "UTF-8";
+
+header, nav, aside, section, footer{
+	float: left;
+	border: 2px solid orange;
+}
+
+header{
+	width: calc(100% - 2%);
+	height: 100px;
+}
+nav{
+	width: calc(100% - 2%);
+	height: 50px;
+}
+#left{
+	width: calc(20% - 1%);
+	height: 400px;
+}
+section{
+	width: calc(60% - 1%);
+	height: 400px;	
+}
+#right{
+	width: calc(20% - 1%);
+	height: 400px;
+}

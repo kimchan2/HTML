@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/mycss.css">
+<style>
+</style>
+<script type="text/javascript"> // es6(2015) es7(2017) 자바스크립트 표준 no
+	var sum = 0; // 전역변수 모든 함수에서 사용가능
+	
+	function add(a, b) {
+		var sum = a + b; // 지역변수 : add() 내에서만 사용가능
+		return sum;
+	}
+	
+	function sub(a, b) {
+		sum = a - b; // 전역변수 sum
+		return sum;		
+	}
+	window.onload = function(){
+		/* add = add(10, 30);
+		// sum변수는 전역변수의 값을 출력 0이 출력
+		// document.querySelector("#result1").innerHTML = sum;
+		*/
+		
+		res = add(10, 30); // add함수에서 계산된 결과값을 리턴 받는다
+		str = "10 + 30 = " + res + "<br>"; 
+		document.querySelector("#result1").innerHTML = str;
+		
+		x = prompt("입력 1");
+		y = prompt("입력 1");
+		
+		// str = x + " - " + y + " = " + sub(x, y) + "<br>";
+		str = `${x} - ${y} = ` + sub(x,y) + `<br>`; 
+		document.querySelector("#result1").innerHTML += str;
+		
+	}
+</script>
+</head>
+<body>
+	<pre>
+		ES6 표준
+		문자열과 변수를 한 번에 사용
+		```(grave accent, backtick, backquote)감싸서 그대로 표현
+		backtick안에 변수는 ${}를 이용한다
+		
+		backtick을 이용해서 문자열을 표현한것을 템플릿 리터럴이라고 한다
+		
+	</pre>
+	<div class="box">
+		<h1>1. </h1>
+		<div id="result1"></div>
+	</div>
+</body>
+</html>
