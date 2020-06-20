@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/mycss.css">
+<style>
+</style>
+<script>
+
+	Js_array = new Array();
+	str = "";
+	function proc1() {
+		while(true){
+			if(Js_array.length >= 5) break;
+			num = prompt("숫자를 입력하세요");
+			if( Js_array.indexOf(num) < 0 ) Js_array.push(num);
+		}
+
+		for(i = 0; i < Js_array.length; i++){
+			str += `입력받은 수 : ${Js_array[i]}<br>`;
+		}
+		
+		document.querySelector("#result1").innerHTML = str;
+		Js_array = new Array();
+	}
+	
+</script>
+</head>
+<body>
+
+	<div class="box">
+		<h2>2. 서로 중복되지 않은 정수 5개를 입력 받아 출력하는 프로그램을 작성하시오. Js_array객체</h2>
+		<input type="button" value="확인" onclick="proc1()">
+		<div id="result1"></div>
+	</div>
+</body>
+</html>
