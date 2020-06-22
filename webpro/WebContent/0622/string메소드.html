@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/mycss.css">
+<style>
+</style>
+<script>
+	a = "우리 나라 좋은 나라 대한 민국 만세";
+	function proc1() {
+		input = prompt("찾는 단어를 입력해보세요");
+		idx = a.indexOf(input);
+		
+		res = `찾는 글자 : ${input}<br>`;
+		res += `${idx} 번째에 있습니다^^<br>`;
+		
+		document.querySelector("#result1").innerHTML = res;
+	}
+	function proc2() {
+		input = prompt("찾는 단어를 입력해보세요");
+		idx = a.lastIndexOf(input);
+		
+		res = `찾는 글자 : ${input}<br>`;
+		res += `${idx} 번째에 있습니다^^<br>`;
+		
+		document.querySelector("#result2").innerHTML = res;
+	}
+	function proc3() {
+		input = prompt("찾는 단어를 입력해보세요");
+		idx = 0;
+		res = `찾는 글자 : ${input}<br>`;
+		
+		while(true){
+			idx = a.indexOf(input, idx);
+			if(idx < 0) break;
+			res += `${idx} 번째에 있습니다^^<br>`;
+			idx += input.length;
+		}
+		document.querySelector("#result3").innerHTML = res;
+	}
+	
+	function proc4() {
+		a2 = "Good Morning Happy Day";
+		str = a2.charAt(6);
+		
+		res = `6번째 위치 : a2.charAt(6)<br>`;
+		res += `${str}`;
+		document.querySelector("#result4").innerHTML = res;
+	}
+	
+	function proc5() {
+		a2 = "Good Morning Happy Day";
+		str = a2.charCodeAt(6);
+		
+		res = `6번째 위치 : a2.charCodeAt(6)<br>`;
+		res += `${str}`;
+		document.querySelector("#result5").innerHTML = res;
+	}
+	
+	function proc6() {
+		a = prompt("이름을 입력하세요");
+		
+		res = `입력 이름 : ${a}<br>`;
+		res += `길이 : ${a.length}<br>`;
+		
+		a2 = a.trim();
+		
+		res += `공백제거 후 : ${a2.length}<br>`;
+		
+		document.querySelector("#result6").innerHTML = res;
+	}
+	
+	function proc7() {
+		userName = document.getElementById("user");
+		un = userName.value;
+		leng = un.length;
+		
+		res = `입력한 값 : ${un}<br>길이 : ${leng}<br>`;
+		trimUserName = userName.value.trim();
+		
+		if(trimUserName < 1){
+			alert("필수 입력 항목 입니다");
+			return false;
+		}
+		res += `입력한 값을 trim 후 : ${trimUserName}<br>길이 : ${trimUserName.length}<br>`;
+		document.querySelector("#result7").innerHTML = res;
+	}
+	
+	function proc8() {
+		a1 = a.substring(5, 8);
+		res = `원래 문자열 : ${a}<br>a.substring(5, 8)로 추출한 문자열 : ${a1}<br>`;
+		document.querySelector("#result8").innerHTML = res;
+	}
+	
+	function proc9() {
+		
+	}
+	
+	function proc10() {
+		
+	}
+</script>
+</head>
+<body>
+
+	<div class="box">
+		<h2>1. String</h2>
+		a = "우리 나라 좋은 나라 대한 민국 만세"<br>
+		- indexOf(item, start)<br>
+		- lastIndexOf(item, start)<br>
+		<input type="button" value="indexOf" onclick="proc1()">
+		<input type="button" value="lastIndexOf" onclick="proc2()">
+		<input type="button" value="IndexOf(중복찾기)" onclick="proc3()">
+		<div id="result1"></div>
+		<div id="result2"></div>
+		<div id="result3"></div>
+	</div>
+
+	<div class="box">
+		<h2>2. String</h2>
+		a2 = "Good Morning Happy Day"<br>
+		- charAt(index)<br>
+		- charCodeAt(index)<br>
+		- trim()<br>
+		<input type="button" value="charAt" onclick="proc4()">
+		<input type="button" value="charCodeAt" onclick="proc5()">
+		<input type="button" value="trim" onclick="proc6()">
+		<div id="result4"></div>
+		<div id="result5"></div>
+		<div id="result6"></div>
+	</div>
+
+	<div class="box">
+		<h2>3. String</h2>
+		<form action="test.jsp" method="post" onsubmit="return false;">
+			이름 : <input id="user" type="text"><br>
+			<input type="button" value="trim" onclick="proc7()">
+		</form>
+		<div id="result7"></div>
+	</div>
+
+	<div class="box">
+		<h2>4. String</h2>
+		- substring(start, end) : start ~ end 까지의 문자열 추출<br>
+		- slice(start, end) : start ~ end 까지의 문자열 추출, 음수로 끝에서부터 위치 지정가능<br>
+		- substr(start, length) : start 부터 length 길이 만큼 추출<br>
+		<input type="button" value="substring" onclick="proc8()">
+		<input type="button" value="slice" onclick="proc9()">
+		<input type="button" value="substr" onclick="proc10()">
+		<div id="result8"></div>
+		<div id="result9"></div>
+		<div id="result10"></div>
+	</div>
+</body>
+</html>

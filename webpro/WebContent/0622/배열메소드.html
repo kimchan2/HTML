@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/mycss.css">
+<style>
+</style>
+<script>
+	a = [11, 100, 180, 53, 22, 230, 450];
+	
+	function proc1() {
+		a.reverse();
+		
+		document.querySelector("#result1").innerHTML = a;
+	}
+	
+	function proc2() {
+		a.sort();
+		
+		document.querySelector("#result2").innerHTML = a;
+	}
+	
+	function proc3() {
+		a.sort(function(a, b){ return a - b;});
+
+		document.querySelector("#result3").innerHTML = a;
+	}
+	
+	function proc4() {
+		a.sort(function(a, b){ return b - a;});
+
+		document.querySelector("#result4").innerHTML = a;
+	}
+	
+	a = ["사과", "포도", "수박", "참외", "파인애플", "망고", "자몽"];
+	function proc5() {
+/* 		a2 = a.slice(2, 6);
+
+		res = `원래 배열 : ${a}<br>`;
+		res += `slice(2, 6) : ${a2}<br>` */
+		a2 = a.slice(a.indexOf("포도"), a.indexOf("파인애플"));
+		res = `원래 배열 : ${a}<br>`;
+		res += `slice(a.indexOf("포도"), a.indexOf("파인애플") : ${a2}<br>`
+		document.querySelector("#result5").innerHTML = res;
+	}
+	
+	function proc6() {
+		res = `원래배열 : ${a}<br>`;
+		a.splice(3, 0, "메론");
+		res += `a.splice(3, 0, "메론") : ${a}`
+		document.querySelector("#result6").innerHTML = res;
+	}
+	
+	function proc7() {
+		res = `원래배열 : ${a}<br>`;
+		a.splice(3, 1, "메론");
+		res += `a.splice(3, 1, "메론") : ${a}`
+		document.querySelector("#result7").innerHTML = res;
+	}
+	
+	function proc8() {
+		res = `원래배열 : ${a}<br>`
+		a.splice(2, 2);
+		res += `a.splice(2, 2) : ${a}<br>`;
+		document.querySelector("#result8").innerHTML = res;
+	}
+	
+	a = [11, 100, 180, 53, 22, 230, 450];
+	a2 = ["사과", "포도", "수박", "참외", "파인애플", "망고", "자몽"];
+	function proc9() {
+		a3 = a.concat(a2);
+		
+		res = `a = ${a}<br>`;
+		res += `a2 = ${a2}<br>`;
+		res += `a3 = ${a3}<br>`;
+		
+		document.querySelector("#result9").innerHTML = res;
+		
+	}
+	
+	function proc10() {
+		res = `join전 a2 배열길이 : ${a2.length}<br>`;
+		
+		str = a2.join("and");
+		res += `a2.join() 문자열 : ${str.length}<br>`; 
+		
+		document.querySelector("#result10").innerHTML = res;
+
+		res = "a2배열";
+		for(i=0; i< a.length; i++){
+			res += `${i} 번째 요소 : ${a2[i]} <br>`
+		}
+		 
+		res += `str= a2.join()후 a3문자열 <br>`;
+		for(i=0; i < str.length; i++){
+			res += `${i} 번째 요소 : ${str[i]} <br>`
+		}
+		 
+		document.getElementById('result10').innerHTML += res;
+	}
+	
+</script>
+</head>
+<body>
+
+	<div class="box">
+		<h2>1. 배열</h2>
+		- a = [11, 100, 180, 53, 22, 230, 450]<br>	
+		- reverse				 : 배열을 거꾸로 뒤집기<br>
+		- sort()				 : 배열을 거꾸로 뒤집기<br>
+		- sort(function(a, b)){} : 오름차순 정렬 => 11, 22, 53, 100, 180, 230, 450<br>
+		- sort(function(a, b)){} : 내림차순 정렬 => 450, 230, 180, 100, 53, 22, 11<br>
+		<input type="button" value="reverse" onclick="proc1()">
+		<input type="button" value="sort기본" onclick="proc2()">
+		<input type="button" value="sort-ASC" onclick="proc3()">
+		<input type="button" value="sort-DESC" onclick="proc4()">
+		<div id="result1"></div>
+		<div id="result2"></div>
+		<div id="result3"></div>
+		<div id="result4"></div>
+	</div>
+
+	<div class="box">
+		<h2>2. 배열</h2>
+		- a = ["사과", "포도", "수박", "참외", "파인애플", "망고", "자몽"]<br>
+		- slice(start, end)	: start ~ end-1까지의 추출<br>
+		- splice(index, n, a, b, c, ...) : 수정 - 삽입, 추가, 삭제, 삭제 후 추가<br>
+		- splice(3, 0, "메론") : 3번째 위치에 메론을 삽입<br>
+		- splice(3, 1, "메론") : 3번째 위치에 1개를 지우고 메론을 삽입<br>
+		- splice(2, 2) : 2번째 위치에 2개를 삭제<br>
+		<input type="button" value="slice" onclick="proc5()">
+		<input type="button" value="splice" onclick="proc6()">
+		<input type="button" value="splice" onclick="proc7()">
+		<input type="button" value="splice" onclick="proc8()">
+		<div id="result5"></div>
+		<div id="result6"></div>
+		<div id="result7"></div>
+		<div id="result8"></div>
+	</div>
+
+	<div class="box">
+		<h2>3. 배열</h2>
+		- a = [11, 100, 180, 53, 22, 230, 450]<br>	
+		- a2 = ["사과", "포도", "수박", "참외", "파인애플", "망고", "자몽"]<br>
+		- a.concat(a2) : a와 a2가 합쳐져서 새로운 배열을 생성<br>
+		- a.join() : 배열 a를 하나의 문자열로 변환<br>
+		- a2.join() : 배열 a2를 하나의 문자열로 변환<br>
+		<input type="button" value="concat" onclick="proc9()">
+		<input type="button" value="join" onclick="proc10()">
+		<div id="result9"></div>
+		<div id="result10"></div>
+	</div>
+</body>
+</html>
