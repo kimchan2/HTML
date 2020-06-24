@@ -94,11 +94,44 @@
 	}
 	
 	function proc9() {
-		
+		a1 =  a.slice(5,10);
+		 
+		res = `원래 문자열 : ${a}<br> `;
+		res += `a.slice(5,10) : ${a1}`;
+		 
+		document.getElementById('result9').innerHTML = res;
 	}
 	
 	function proc10() {
+		a1 =  a.substr(5,10);
+		 
+		res = `원래 문자열 : ${a}<br> `;
+		res += `a.substr(5,10) : ${a1}`;
+		 
+		document.getElementById('result10').innerHTML = res;
+	}
+	
+	function proc11() {
+		res = "문자열 길이 : " + a.length + "<br>";
+
+		list = a.split(" ");
+		res += `a.split(" ")의 길이 : ${list.length}<br>`;
 		
+		for(i=0; i<list.length; i++){
+			res += `${i} 번째 : ${list[i]}<br>`;
+		}
+		document.querySelector("#result11").innerHTML = res;
+	}
+	
+	function proc12() {
+		text = document.getElementsByTagName('textarea')[0];
+		//document.getElementById("textarea") // 첫번째 거 한개만 리턴
+		tvalue = text.value;
+		
+		tvalue = tvalue.replace(/\r/g, "").replace(/\n/g, "<br>");
+		//  //g => 전체 영역, 엔터를 입력하면 \r\n 가 입력됨
+		
+		document.querySelector("#result12").innerHTML = tvalue;
 	}
 </script>
 </head>
@@ -151,6 +184,22 @@
 		<div id="result8"></div>
 		<div id="result9"></div>
 		<div id="result10"></div>
+	</div>
+
+	<div class="box">
+		<h2>5. String</h2>
+		a = "우리 나라 좋은 나라 대한 민국 만세"<br>
+		- split('구분자') : 구분자를 기준으로 문자열을 분리, 배열로 리턴<br>
+		<input type="button" value="split" onclick="proc11()">
+		<div id="result11"></div>
+	</div>
+
+	<div class="box">
+		<h2>6. String</h2>
+		- replace(old, new) : old문자를 new 문자로 변경<br><br>
+		<textarea rows="10" cols="50"></textarea>
+		<input type="button" value="확인" onclick="proc12()">
+		<div id="result12"></div>
 	</div>
 </body>
 </html>

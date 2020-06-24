@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/mycss.css">
+<style>
+</style>
+<script>
+	d1 = new Date();	
+	function proc1() {
+		d1 = new Date(); // 현재 날짜와 시간
+		d2 = new Date(234234234); //1970/01/01 이후의 밀리초
+		d3 = new Date("2020 06 23");
+		d4 = new Date(2020, 06, 23, 11, 15);
+		
+		res = `현재 날짜 new Date(): ${d1}<br>`;
+		res += `new Date(234234234) 1970년 1월 1일 기준 : ${d2}<br>`;
+		res += `new Date("2020 06 23") : ${d3}<br>`;
+		res += `new Date(2020, 06, 23, 11, 15) : ${d4}<br>`;
+		
+		document.querySelector("#result1").innerHTML = res;
+		
+		res = "<hr>";
+		
+		d1 = d1.toLocaleString();
+		d2 = d2.toLocaleString();
+		d3 = d3.toLocaleString();
+		d4 = d4.toLocaleString();
+		
+		res += `현재 날짜 new Date(): ${d1}<br>`;
+		res += `new Date(234234234) 1970년 1월 1일 기준 : ${d2}<br>`;
+		res += `new Date("2020 06 23") : ${d3}<br>`;
+		res += `new Date(2020, 06, 23, 11, 15) : ${d4}<br>`;
+
+		document.querySelector("#result1").innerHTML += res;
+	}
+	
+	function proc2() {
+		day = d1.getDay();
+		
+		res = `현재 날짜 : ${d1.toLocaleDateString()}<br>`;
+		switch (day) {
+		case 0:
+			res += `일요일`;
+			break;
+		case 1:
+			res += `월요일`;
+			break;
+		case 2:
+			res += `화요일`;
+			break;
+		case 3:
+			res += `수요일`;
+			break;
+		case 4:
+			res += `목요일`;
+			break;
+		case 5:
+			res += `금요일`;
+			break;
+		case 6:
+			res += `토요일`;
+			break;
+		}
+		document.querySelector("#result2").innerHTML += res;
+	}
+	
+	function proc3() {
+		day = ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일"];		
+		res = `현재 날짜 : ${d1.toLocaleDateString()}<br>`;
+		res += `${day[d1.getDay()]}<br>`;
+		
+		document.querySelector("result3").innerHTML = res;
+	}
+</script>
+</head>
+<body>
+
+	<div class="box">
+		<h2>1. Date객체</h2>
+		- 객체 생성<br>
+		new Date() // 현재 날짜와 시간<br>
+		new Date(milliseconds) //1970/01/01 이후의 밀리초<br>
+		new Date(dateString)<br>
+		new Date(year, month, date[, hours[, minutes[, seconds[,ms]]]])<br>
+		
+		<input type="button" value="확인" onclick="proc1()">
+		<div id="result1"></div>
+	</div>
+
+	<div class="box">
+		<h2>2. Date객체</h2>
+		- 요일 구하기 : getDay()<br>
+		- 결과값 : 0(일요일) ~ 6(토요일)<br>		
+		<input type="button" value="확인" onclick="proc2()">
+		<div id="result2"></div>
+	</div>
+
+	<div class="box">
+		<h2>3. Date객체</h2>
+		- 요일 구하기 : getDay()<br>
+		- 결과값 : 0(일요일) ~ 6(토요일)<br>		
+		- 배열을 이용 비교<br>
+		- day = ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일"]<br>	
+		<input type="button" value="확인" onclick="proc3()">
+		<div id="result3"></div>
+	</div>
+</body>
+</html>

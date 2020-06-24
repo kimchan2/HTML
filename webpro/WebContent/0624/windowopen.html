@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/mycss.css">
+<style>
+</style>
+<script>
+	function proc1() {
+		win = window.open("winsub.html", "aaa", "width=500 height=500");
+		win.moveTo(200, 100);
+	}
+	function proc2() {
+		win.moveTo(100, 100);
+	}
+	function proc3() {
+		win.moveBy(100, 100);
+	}
+</script>
+</head>
+<body>
+
+	<div class="box">
+		<h2>1. Window</h2>
+		버튼을 클릭하면 새로운 window창을 연다<br>
+		window.open(url, name, spec)<br>
+		<input type="button" value="확인" onclick="proc1()">
+		<input type="button" value="moveTo" onclick="proc2()">
+		<input type="button" value="moveBy" onclick="proc3()">
+		<div id="result1"></div>
+	</div>
+</body>
+</html>

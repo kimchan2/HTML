@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/mycss.css">
+<style>
+</style>
+<script>
+	function proc1() {
+		setTimeout(function() {
+			div = document.querySelector("#result1");
+			div.style.backgroundColor = "yellow";
+		}, 1000)
+	}
+	
+	function proc2(t) {
+		but = t;
+		a = setInterval(function() {
+				div = document.querySelector("#result2");
+			
+				cr = Math.floor(Math.random()*256);
+				cg = Math.floor(Math.random()*256);
+				cb = Math.floor(Math.random()*256);
+			
+				div.style.backgroundColor = `rgb(${cr}, ${cg}, ${cb})`;
+			}, 1000);
+		
+		console.log(a);
+		
+		// 확인버튼 안보이게 한다
+		t.style.display = "none";
+	}
+	
+	function stop() {
+		clearInterval(a);
+		
+		// 확인버튼을 다시 보이게 한다
+		// document.querySelector("#pro").style.display = "inline";
+		but.style.display = "inline";
+	}
+</script>
+</head>
+<body>
+
+	<div class="box">
+		<h2>1. setTimeout</h2>
+		setTimeout(function(){}, 1000)<br>
+		1초후에 result1의 배경색깔을 바꾼다<br>
+		<input type="button" value="확인" onclick="proc1()">
+		<div id="result1"></div>
+	</div>
+
+	<div class="box">
+		<h2>2. setInterval</h2>
+		setInterval(function(){}, 1000)<br>
+		1초후가 지날 때 마다 result2의 배경색을 바꾼다<br>
+		<input type="button" id="pro" value="확인" onclick="proc2(this)">
+		<input type="button" value="중지" onclick="stop()">
+		<div id="result2"></div>
+	</div>
+</body>
+</html>

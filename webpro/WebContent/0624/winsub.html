@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/mycss.css">
+<style>
+</style>
+<script>
+	function proc1() {
+		addr = document.querySelector("input").value;
+		
+		len = addr.trim().length;
+		if(len < 1){
+			window.alert("주소를 입력해야 합니다");
+			return false;
+		}
+		
+		console.log(addr + " " + len);
+		
+		// 부모창으로 보내기
+		opener.document.querySelector("#result1").innerHTML = addr;
+		window.close();
+	}
+</script>
+</head>
+<body>
+
+	<div class="box">
+		<h2>1. winsub</h2>
+		부모창에서 열리는 자식창입니다.<br>
+		부모창으로 접근하기 위해서 opener속성을 이용한다.<br>
+		주소 : <input type="text"><br>
+		<input type="button" value="확인" onclick="proc1()">
+		<div id="result1"></div>
+	</div>
+</body>
+</html>
