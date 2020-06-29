@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/mycss.css">
+<style>
+</style>
+<script>
+	function proc1() {
+		res = `전체 : ${location.href}<br>`;
+		res += `hostname : ${location.hostname}<br>`;
+		res += `hostname/port : ${location.host}<br>`;
+		res += `pathname : ${location.pathname}<br>`;
+		res += `protocol : ${location.protocol}<br>`;
+		document.getElementById("result1").innerHTML = res;
+	}
+	
+	function proc2() {
+		location.href="test.jsp?name=aaa";
+	}
+	
+	function goPage() {
+		location.href="test.jsp?name=bbb";
+	}
+	
+	function goPost() {
+		a = document.querySelector("form");
+		a = document.getElementsByTagName("form")[0];
+		a = document.ff;
+		
+		a.action = "testpost.jsp";
+		a.method = "post";
+		a.submit();
+	}
+	
+	function goReplace(str) {
+		location.replace(str);
+	}
+	
+	function goReload() {
+		// Hello문자를 출력하고 1초 후에  다시 원래 문서로 돌아간다
+		document.querySelector("#result2").innerHTML = "Hello~~";
+		document.querySelector("#result2").style.color = "blue";
+		
+		setTimeout(function() {
+			
+			location.reload();
+			
+		}, 1000)
+	}
+	
+</script>
+</head>
+<body>
+
+	<div class="box">
+		<h2>1. location 객체</h2>
+		location.href : 전체 URL<br>
+		hostname : hostname을 반환(서버이름)<br>
+		host : hostname과 port를 반환, 80은 기본값으로 출력x<br>
+		pathname : 경로(path)를 반환<br>
+		protocol : 규약, 서비스 종류<br>
+		<input type="button" value="확인" onclick="proc1()">
+		<div id="result1"></div>
+	</div>
+
+	<div class="box">
+		<h2>2. location 객체</h2>
+		- 자동으로 특정 페이지로 이동할 때 사용 - location.href="";<br>
+		<button type="button" onclick="proc2()">페이지 이동</button><br><br>
+		
+		- a태그 에서 href="javascript:goPage()" - location.href="";<br>
+		<a href="javascript:goPage()">공지사항</a><br><br>		
+		
+		- 이벤트 방식(get) - onclick="goPage()" - location.href="";<br>
+		<button type="button" onclick="goPage()">공지사항</button><br><br>
+		
+		- 이벤트 방식(post)
+		<form name="ff">
+			goPost()함수 호출 하여 action과 method를 설정<br>
+			form을 이용하여 post방식으로 서버로 보내기때문에 location.href 대신에 submit()을 사용
+			<input type="hidden" name="info" value="착한사람"><br>
+			<input type="button" onclick="goPost()" value="공지사항">
+		</form>
+		<br>
+		
+		- 새로운 문서로 대체 - location.replace(url) - 다시 되돌아 올 수 없음<br>
+		<button type="button" onclick="goReplace('test.jsp?name=ccc')" >공지사항</button><br><br>
+		
+		- 현재 문서를 다시 로드 할 때<br>
+		<input type="button" value="확인" onclick="goReload()">
+		<div id="result2"></div>
+	</div>
+</body>
+</html>

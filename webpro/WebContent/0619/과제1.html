@@ -9,15 +9,15 @@
 <script>
 	function proc1() {
 		arr = new Array();
-		index = 0;
 		res = "";
 		while(true){
 			str = prompt("이름을 입력해주세요", "공백 입력 또는 취소버튼 클릭으로 종료합니다.")
 			if( str == " " || str === null) break;
-			arr.push(name);
-			res += `입력한 이름 : ${arr[index]}<br>`;
-			index++;
+			arr.push(str);
 			
+		}
+		for(i = 0; i < arr.length; i++){	
+			res += `입력한 이름 : ${arr[i]}<br>`;
 		}
 		document.querySelector("#result1").innerHTML = res;
 	}

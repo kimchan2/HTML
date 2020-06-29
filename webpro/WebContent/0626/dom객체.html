@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/mycss.css">
+<style>
+</style>
+<script>
+	/* window.onload = function() {
+		document.
+	} */
+
+	function proc1() {
+		vul = document.getElementsByTagName("ul")[0];
+		
+		vlist = vul.getElementsByTagName("li");
+		
+		res = ""
+		for(i=0; i<vlist.length; i++){
+			text = vlist[i].firstChild.data;
+			res += `${text}<br>`;
+		}
+		document.getElementById("result1").innerHTML = res;
+	}
+	
+	function proc2() {
+		vul = document.getElementsByTagName("ul")[1];
+		
+		vlist = vul.getElementsByTagName("li");
+		
+		res = ""
+		for(i=0; i<vlist.length; i++){
+			text = vlist[i].firstChild.data;
+			vimg = document.createElement("img");
+			//vimg.src = ""
+			vimg.setAttribute("src", `../images/${text}.jpg`);
+			vimg.setAttribute("alt", text);
+			vimg.setAttribute("width", "100px");
+			vimg.setAttribute("height", "100px");
+			
+			vlist[i].appendChild(vimg);
+		}
+	}
+	
+	function proc3(a) {
+		// a 변수는 클릭한 li 객체
+		text = a.firstChild.data;
+		vimg = document.createElement("img");
+		//vimg.src = ""
+		vimg.setAttribute("src", `../images/${text}.jpg`);
+		vimg.setAttribute("alt", text);
+		vimg.setAttribute("width", "100px");
+		vimg.setAttribute("height", "100px");
+		
+		a.appendChild(vimg);
+	}
+	
+</script>
+</head>
+<body>
+	
+	<div class="box">
+		<h2>1. dom 객체</h2>
+		<ul>
+			<li>사과</li>
+			<li>복숭아</li>
+			<li>바나나</li>
+			<li>수박</li>
+			<li>참외</li>
+		</ul>
+		<input type="button" value="확인" onclick="proc1()">
+		<div id="result1"></div>
+	</div>
+	
+	<div class="box">
+		<h2>2. dom 객체-새로운 요소 생성하기</h2>
+		createElement(tagname)<br>
+		createTextNode(text)<br>
+		appendChild(node)<br>
+		&lt;img src="" alt=""&gt;<br>
+		setAttribute("src", `../images/${text}.jpg`)<br>
+		<ul>
+			<li>단풍</li>
+			<li>대나무숲</li>
+			<li>등대</li>
+			<li>딸기스무디</li>
+			<li>꽃</li>
+		</ul>
+		<input type="button" value="확인" onclick="proc2()">
+		<div id="result2"></div>
+	</div>
+	
+	<div class="box">
+		<h2>3. dom 객체-새로운 요소 생성하기</h2>
+		createElement(tagname)<br>
+		createTextNode(text)<br>
+		appendChild(node)<br>
+		<ul>
+			<li onclick="proc3(this)">단풍</li>
+			<li onclick="proc3(this)">대나무숲</li>
+			<li onclick="proc3(this)">등대</li>
+			<li onclick="proc3(this)">딸기스무디</li>
+			<li onclick="proc3(this)">꽃</li>
+		</ul>
+		<input type="button" value="확인" onclick="proc3()">
+		<div id="result3"></div>
+	</div>
+</body>
+</html>

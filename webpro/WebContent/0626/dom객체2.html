@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/mycss.css">
+<style>
+	img{
+		width: 200px;
+		height: 200px;
+		border-radius: 50%;
+	}
+</style>
+<script>
+	
+	function removeNode() {
+		parent = document.querySelector("#target");
+		child = document.querySelector("#p1");
+		
+		parent.removeChild(child);
+	}
+	
+	function addProc() {
+		// 문자열 배열
+		str=["나는", "오늘도", "눈물을", "흘린다"];
+		// str[0] str[1] str[2] ...
+		
+		// 랜덤발생 - str의 길이 만큼
+		randomIndex = Math.floor(Math.random()*str.length);
+		
+		vnode = document.createTextNode(str[randomIndex]);
+		
+		// p태그를 생성
+		vptag = document.createElement("p");
+		// p태그에 생성된 문자열을 추가
+		vptag.appendChild(vnode);
+		
+		// result에 p태그를 추가
+		document.querySelector("#result").appendChild(vptag);
+	}
+	
+	function removeProc() {
+		// result로 접근
+		parent = document.querySelector("#result");
+			
+		// 삭제할 마지막 child를 선택한다.
+		child = parent.lastChild;
+			
+		parent.removeChild(child);
+	}
+	
+	function addRemove() {
+		// 문자열 배열
+		str=["나는", "오늘도", "눈물을", "흘린다"];
+		
+		// 랜덤발생 - str의 길이 만큼
+		randomIndex = Math.floor(Math.random()*str.length);
+		
+		// 버튼 클릭 문자열로 textNode생성<br>
+		vTextNode = document.createTextNode(str[randomIndex]);
+		
+		// 삭제버튼 태그 생성<br>
+		vRemove_tag = document.createElement("button");
+		vRemove_tag.setAttribute("type", "button");
+		vRemove_tag.setAttribute("onclick", "remove(this)");
+		removeTextNode = document.createTextNode("삭제");
+		vRemove_tag.appendChild(removeTextNode);
+		
+		// 버튼에 대한 click 이벤트 설정 - 익명함수, 콜백 함수
+		/* 
+		vRemove_tag.onclick = function(){
+			parent = document.querySelector('#result2');
+		    p = this.parentNode;
+		    parent.removeChild(p);
+		}
+		 */
+		
+		// p태그 생성<br>
+		vP_tag = document.createElement("p");
+		
+		// p태그에 textNode와 삭제버튼 추가<br>
+		vP_tag.appendChild(vTextNode);
+		vP_tag.appendChild(vRemove_tag);
+		
+		// result2에 p태그를 추가<br>
+		document.querySelector("#result2").appendChild(vP_tag);
+	}
+	
+	function remove(a){
+	      
+		parent = document.querySelector('#result2');
+	    p = a.parentElement;
+	    parent.removeChild(p);
+	}
+	
+	function changeSrc() {
+		arr = ["coffee1.jpg", "Koala.jpg", "가구1.jpg", "가구2.jpg", "딸기스무디.jpg", "수국.jpg",
+		       "스포츠1.jpg", "식품1.jpg", "음악1.jpg", "커피2.jpg"]
+		
+		// 랜덤 발생
+		rand = Math.floor(Math.random()*arr.length);
+		
+		// img로 접근, src 속성 변경 - arr[rand]
+		document.querySelector("img").setAttribute("src", `../images/${arr[rand]}`);
+	}
+	
+	function onoffProc() {
+		 
+		//img의 src값을 얻어온다 
+		vimg = document.querySelector("#img2");
+		vsrc =  vimg.getAttribute("src");
+		  
+		//src전체문자열중에서 off라는 일부 문자열이 포함되었느냐? off -  on
+		a =  vsrc.match("off");
+		if(a == null) {
+			vimg.setAttribute("src", "../images/sw_off.png") ;
+		}else {
+		    vimg.setAttribute("src", "../images/sw_on.png") ;
+		}
+		// src전체문자열 중에서 off라는 일부 문자열이 포함되었느냐
+	}
+	
+</script>
+</head>
+<body>
+
+	<div class="box">
+		<h2>1. dom객체</h2>
+		- node 삭제<br>
+		parent.removeChild(child);<br>
+		<div id="target">
+        	<p id="p1">첫번째 단락</p>
+        	<p id="p2">두번째 단락</p>
+    	</div>
+    	<button type="button" onclick="removeNode()">누르세요!</button> <!-- 전송기능이 없음 -->
+    	<!-- <button></button> // 전송기능이 있음 form 활용 -->
+		<div id="result1"></div>
+	</div>
+
+	<div class="box">
+		<h2>2. dom객체</h2>
+		- node 삭제<br>
+		parent.removeChild(child);<br>
+		추가 클릭 - result에 문자열 출력<br>
+		삭제 클릭 - result에 문자열 삭제<br>
+		<button type="button" onclick="addProc()">추가</button>
+		<button type="button" onclick="removeProc()">삭제</button>
+		<div id="result"></div>
+	</div>
+
+	<div class="box">
+		<h2>3. dom객체</h2>
+		1). 버튼 클릭 문자열로 textNode생성<br>
+			삭제버튼 태그 생성<br>
+			p태그 생성<br>
+			p태그에 textNode와 삭제버튼 추가<br>
+			result2에 p태그를 추가<br>
+		
+		2). 생성된 삭제버튼 클릭
+			해당 문
+			
+		<br>
+		<button type="button" onclick="addRemove()">추가삭제</button>
+		<div id="result2"></div>
+	</div>
+
+	<div class="box">
+		<h2>4. dom객체 - 이미지 속성 변경</h2>
+		- 버튼을 클릭 할 때 마다 이미지를 변경
+		- 이미지 배열 구성
+		- 랜덤 발생
+		<button type="button" onclick="changeSrc()">확인</button>
+		<div id="result3">
+			<img src="../images/Koala.jpg" alt="코알라" id="img1">
+		</div>
+	</div>
+
+	<div class="box">
+		<h2>5. dom객체 - 이미지 속성 변경</h2>
+		- 두개의 이미지가 번갈아 가며 나타난다<br>
+		- src 값을 비교<br>
+		- img.match("off") : src의 전체 문자열중 off 라는 글자가 포함되어 있는지 검사<br>
+		- 해당 문자열이 포함되어 있지 않으면 null을 리턴<br>
+		- 포함 되어 있으면 갯수만큼 배열로 리턴<br>
+		<div id="result4">
+			<img onclick="onoffProc()" src="../images/sw_off.png" alt="" id="img2">
+		</div>
+	</div>
+	
+</body>
+</html>

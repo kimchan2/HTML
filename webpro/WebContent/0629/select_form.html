@@ -1,0 +1,179 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/mycss.css">
+<style>
+.box {
+  height : auto;
+}
+.dd{
+  float : left;
+}
+#left, #right {
+   width : 150px;
+   height : 230px;
+   padding : 0px;
+}
+#center {
+  width : 100px;
+  height : 200px;
+  text-align: center;
+}
+#footer{
+  clear : both;
+}
+#header, #footer{
+  width : 350px;
+  text-align: center;
+}
+select {
+  width : 100%;
+  height : 100%;
+}
+.box input[type=button]{
+   width : 80%;
+   height : 30px;
+   padding : 0px;
+}
+ #footer input[type=button]{
+   width : 80px;
+} 
+</style>
+<script>
+window.onload = function(){
+	form =   document.selform ;
+} 
+function proc1(){
+	 //a = document.getElementsByName("selform")[0];
+	 //document.getElementsByName('ls')[0]
+	 //tvalue = document.getElementsByName('txt')[0].value;
+	 
+	 //입력 값 가져오기
+	 //입력값으로 <option value="aaaaas">aaaas</option>를 생성
+	 tvalue = form.txt.value;
+	 if(tvalue.trim().length < 1){
+		 alert("데이타를 입력하세요");
+		 return false;
+	 }
+	 
+	 opt = document.createElement('option');
+	 opt.value = tvalue;
+	 opt.text = tvalue;
+	 form.ls.appendChild(opt);
+	 
+	/*  opt.setAttribute('value', tvalue);
+	 topt =  document.createTextNode(tvalue);
+	 opt.appendChild(topt);
+	 form.ls.appdndChild(opt); */
+	 
+	 //입력한 내용 지우기 
+	 form.txt.value = "";
+	 form.txt.focus();
+}
+   
+function toRight() {
+	// 왼쪽에서 선택한 값을 오른쪽으로 보내기
+	
+	idx = form.ls.selectedIndex;
+	// 선택한 항목이 없다면
+	if(idx == -1){
+		window.alert("항목을 선택하세요");
+		return;
+	}
+	
+	// 선택한 항목이 있다면 idx번째의 값을 가져온다
+	lvalue = form.ls.options[idx].value;
+	
+	// 오른쪽으로 보낸다 <- option생성
+/* 
+	opt = document.createElement("option");
+	opt.value = lvalue;
+	opt.text = lvalue;
+	form.rs.appendChild(opt);
+	 */
+	form.rs.appendChild(form.ls.options[idx]);
+	
+	// 왼쪽은 지운다
+	// form.ls.removeChild(form.ls.options[idx]);
+}
+
+function toLeft() {
+	idx = form.rs.selectedIndex;
+	// 선택한 항목이 없다면
+	if(idx == -1){
+		window.alert("항목을 선택하세요");
+		return;
+	}
+	
+	// 왼쪽으로 보낸다
+	form.ls.appendChild(form.rs.options[idx]);
+}
+
+function rightAll() {
+	len = form.ls.length;
+	for(i = len-1; i >= 0; i--){
+		form.rs.appendChild(form.ls.options[i]);
+	}
+}
+
+function leftAll() {
+	len = form.rs.length;
+	for(i = len-1; i >= 0; i--){
+		form.ls.appendChild(form.rs.options[i]);
+	}
+}
+   
+</script>
+</head>
+<body>
+<pre>	
+	form태그안에 input type="text"인 요소가 한개만 있을경우 
+ 	자동으로 submit이 실행된다 
+	자동 submit을 방지하기 위해서 form 태그안에 onsubmit="return false;" 를 기술해준다
+	
+	새로운 내용이나, 태그를 appendChild()로 추가한다
+	기존의 이미 존재하는 내용이나 태그를 appendChild()하면 이동한다.
+</pre>
+
+<div class="box">
+   <h2>1. selectform  </h2>
+   
+ <form name="selform" onsubmit="return false;">
+   <div id="header">select 객체 예제</div>
+   <div class="dd" id="left">
+      <select name="ls" size="9" multiple>
+        
+      </select>
+   </div>
+   <div class="dd" id="center">
+     <input type="button" class="but" value=">" onclick="toRight()"><br>
+     <input type="button" class="but" value="<" onclick="toLeft()"><br>
+     <input type="button" class="but" value=">>" onclick="rightAll()"><br>
+     <input type="button" class="but" value="<<" onclick="leftAll()"><br>
+   </div>
+   <div class="dd" id="right">
+     <select name="rs" size="9" multiple>
+       
+      </select>
+   </div>
+   <div id="footer">
+     <input type="text" name="txt">
+     <input type="button" value="추가" onclick="proc1()">
+   </div>
+ </form> 
+    
+</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+

@@ -22,8 +22,16 @@
 				cr = Math.floor(Math.random()*256);
 				cg = Math.floor(Math.random()*256);
 				cb = Math.floor(Math.random()*256);
-			
-				div.style.backgroundColor = `rgb(${cr}, ${cg}, ${cb})`;
+				console.log(`${cr} ${cg} ${cb}`);
+				
+				// 16진수로 변환
+				cr = cr.toString(16);
+				cg = cg.toString(16);
+				cb = cb.toString(16);
+				console.log(`${cr} ${cg} ${cb}`);
+				
+				//div.style.backgroundColor = `rgb(${cr}, ${cg}, ${cb})`;
+				div.style.backgroundColor = `#${cr}${cg}${cb}`;
 			}, 1000);
 		
 		console.log(a);
@@ -38,6 +46,34 @@
 		// 확인버튼을 다시 보이게 한다
 		// document.querySelector("#pro").style.display = "inline";
 		but.style.display = "inline";
+	}
+	
+	function proc3(t) {
+		but = t;
+		str = new Array("Hello", "Good", "Happy", "Orange", "무궁화", "진달래");
+		//str = [];
+		
+		a = setInterval(function() {
+			// 랜덤으로 발생 str배열의 인덱스를 지정
+			res = str[Math.floor(Math.random()*str.length)]
+			
+			// 글자색, 글자크기 변경
+			size = Math.floor(Math.random()*3 + 50);
+			console.log(size);
+			
+			cr = Math.floor(Math.random()*256);
+			cg = Math.floor(Math.random()*256);
+			cb = Math.floor(Math.random()*256);
+			document.querySelector("#result3").style.fontSize = `${size}px`;
+			document.querySelector("#result3").style.color = `rgb(${cr}, ${cg}, ${cb})`;
+			
+			// 출력
+			document.querySelector("#result3").innerHTML = res;
+			
+		}, 500);
+		
+		// 확인버튼 안보이게
+		t.style.display = "none";
 	}
 </script>
 </head>
@@ -55,9 +91,19 @@
 		<h2>2. setInterval</h2>
 		setInterval(function(){}, 1000)<br>
 		1초후가 지날 때 마다 result2의 배경색을 바꾼다<br>
+		문자열은 배열로 구성한다<br>
 		<input type="button" id="pro" value="확인" onclick="proc2(this)">
 		<input type="button" value="중지" onclick="stop()">
 		<div id="result2"></div>
+	</div>
+
+	<div class="box">
+		<h2>2. setInterval</h2>
+		setInterval(function(){}, 1000)<br>
+		1초후가 지날 때 마다 result3에 문자열을 출력<br>
+		<input type="button" value="확인" onclick="proc3(this)">
+		<input type="button" value="중지" onclick="stop()">
+		<div id="result3"></div>
 	</div>
 </body>
 </html>

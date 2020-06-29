@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	button{
+		padding: 0;
+	}
+	#user, #computer, img{
+		float: left;
+		width: 50%;
+		text-align: center;
+	}
+	#user{
+		background-color: yellow;
+	}
+	#computer{
+		background-color: rgb(204, 102, 102);
+	}
+	#result{
+		width: 100%;
+	}
+</style>
+<script>
+	arr = ["가위", "바위", "보"]; 
+
+	function game() {
+		user = prompt("가위 바위 보를 입력하세요.");
+		
+		rand = Math.floor(Math.random()*arr.length);
+		computer = arr[rand];
+		
+		vu = document.querySelector("#userResult");
+		vc = document.querySelector("#computerResult");
+		
+		if(user){
+			vu.setAttribute("src", `../images/${user}_좌.png`);
+			vu.setAttribute("alt", `${user}`);
+		}
+		
+		if(computer){
+			vc.setAttribute("src", `../images/${computer}_우.png`);
+			vc.setAttribute("alt", `${computer}`);
+		}
+		
+		if( (user == "가위" && computer == "보") || (user == "바위" && computer == "가위")
+				|| (user == "보" && computer == "바위") ){
+			document.querySelector("#result").innerHTML = "결과 : 당신의 승!!";
+		}else if( user == computer){
+			document.querySelector("#result").innerHTML = "결과 : 무승부!!";
+		}else{
+			document.querySelector("#result").innerHTML = "결과 : 컴퓨터의 승!!";
+		}
+	}
+
+</script>
+</head>
+<body>
+	<center>
+		<button type="button" onclick="game()">게임시작</button><br>
+	</center>
+	<div id="user">사람</div>
+	<div id="computer">컴 퓨 터</div>
+	<img id="userResult">
+	<img id="computerResult">
+	<br><br>
+	<div style="text-align: center" id="result"></div>
+</body>
+</html>

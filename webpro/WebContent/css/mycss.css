@@ -9,7 +9,7 @@ div{
    border : 2px solid green;
    padding : 5px;
    margin : 5px;
-   width : 60%;
+   width : auto;
 }
 
 span{
@@ -27,14 +27,14 @@ span{
 	/* background: rgba(233, 134, 200, 0.3) */
 	background: #f6d9f3;
 }
-.box input[type="button"]{
+.box input[type="button"], button[type="button"]{
 	color: white;
 	background: blue;
 	font-weight: bold;
 	padding: 5px 15px 8px;
 	border-radius: 50px;
 	margin-top: 20px;
-	width: 100px;
+	width: auto;
 }
 .box div{
 	border: 2px dotted orange;

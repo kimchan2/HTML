@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	div, h1, #result{
+		text-align: center;
+	}
+	h1{
+		margin: 0;
+	}
+</style>
+<script>
+
+	function dan1() {
+		dan = document.querySelector("#gugudan").value;
+		
+		res = "";
+		for(i = 1; i < 10; i++){
+			res += `${dan} * ${i} = ${dan*i}<br>`;
+		}
+		
+		document.querySelector("#result").innerHTML = res;
+	}
+
+</script>
+</head>
+<body>
+	<div>
+		<select id="gugudan">
+			<option value="2">2단</option>
+			<option value="3">3단</option>
+			<option value="4">4단</option>
+			<option value="5">5단</option>
+			<option value="6">6단</option>
+			<option value="7">7단</option>
+			<option value="8">8단</option>
+			<option value="9">9단</option>
+		</select>
+		<button type="button" onclick="dan1()">출 력</button>
+	</div>
+	<br>
+	<h1>결과 출력</h1>
+	<br>
+	<div id="result"></div>
+</body>
+</html>

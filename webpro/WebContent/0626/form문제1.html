@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	input{
+		width: 10px;
+	}
+	textarea{
+		width: 100px;
+		height: 200px;
+	}
+</style>
+<script>
+
+	function gugudan() {
+		dan = document.querySelector("input").value;
+		res = `${dan}단&#10;&#10;`;
+		for(i = 1; i < 10; i++){
+			res += `${dan} * ${i} = ${dan*i}&#10;`; // &#10; 줄바꿈
+		}
+		
+		document.querySelector("textarea").innerHTML = res;
+	}
+
+</script>
+</head>
+<body>
+	<center>
+		<input type="text"> 단
+		<button type="button" onclick="gugudan()">출력</button>
+		<br>
+		<br>
+		<textarea rows="50" cols="10"></textarea>
+	</center>	
+</body>
+</html>

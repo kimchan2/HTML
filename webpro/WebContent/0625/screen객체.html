@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/mycss.css">
+<style>
+</style>
+<script>
+	function proc1() {
+		win = window.open("", "", "width=500 height=500");
+		
+		win.moveTo(100, 100);
+	}
+	
+	function proc2() {
+		//win.resizeTo(50, 50); // 절대값을 지정
+		// win.resizeBy(50, 50); // 상대값을 지정, 현재크기에서 50, 50을 증가
+		
+		win.moveTo(0,0);
+		win.resizeTo(screen.availWidth, screen.availHeight);
+		
+		console.log("width " + screen.width);
+		console.log("awidth " + screen.availWidth);
+		
+		console.log("height " + screen.height);
+		console.log("aheight " + screen.availHeight);
+	}
+</script>
+</head>
+<body>
+
+	<div class="box">
+		<h2>1. screen 객체</h2>
+		screen.availWidth : 브라우저의 사용가능 길이<br>
+		screen.availHeight : 부라우저의 사용가능 높이<br>
+		screen.width : 브라우저의 길이
+		screen.height : 브라우저의 높이
+		<input type="button" value="확인" onclick="proc1()">
+		<input type="button" value="전체크기" onclick="proc2()">
+		<div id="result1"></div>
+	</div>
+</body>
+</html>
