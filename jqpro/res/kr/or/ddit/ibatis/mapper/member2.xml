@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+			PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+			"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<!-- namespace속성 : 아래에서 작성한 SQL을 호출할 때 같이 사용된다.-->
+<sqlMap namespace="member">
+<!-- 
+	이 영역에 sql문에 맞는 태그를 사용하여 SQL문을 기술한다.
+	
+	사용할 수 있는 기본 태그들
+		<select> ~~~ </select>
+		<insert> ~~~ </insert>
+		<update> ~~~ </update>
+		<delete> ~~~ </delete>
+		
+	위 태그에서 사용되는 속성들
+		1) id속성 : 해당 태그를 호출할 때 <sqlMap>태그의 namespace와 연결하여 사용하는 이름
+		2) parameterClass속성 : sql문에 사용될 데이터가 들어있는 객체를 지정한다.
+							  (보통 VO클래스, 자바의 자료형이름 등이 사용된다.)
+		3) resultClass속성 : select문을 실행한 결과를 담을 객체를 지정한다.
+							(보통 VO클래스, 자바의 자료형이름 등이 사용된다.)
+ -->
+
+<!-- select 연습 -->
+<!-- 결과를 리턴할 타입의 클래스를 지정해줘야함 -->
+<select id="getMemberAll" resultClass="memVO">
+
+	SELECT * FROM member2
+	
+</select>
+
+<select id="getMemberById" parameterClass="String" resultClass="String">
+	SELECT mem_id FROM member2
+	WHERE mem_id = #mem_id#
+</select>
+
+<select id="selectByZipcode" resultClass="zipVO" parameterClass="String">
+	SELECT *
+	FROM ziptb
+	WHERE dong like '%' || #dong# || '%'
+</select>
+
+<insert id="insertMember" parameterClass="memVO">
+	INSERT INTO member2 (mem_id,
+						 mem_pass, 
+						 mem_name,
+						 mem_bir,
+						 mem_zip, 
+						 mem_add1, 
+						 mem_add2,
+						 mem_hp,   
+						 mem_mail ) VALUES (#mem_id#,
+						 					#mem_pass#, 
+						 					#mem_name#,
+						 					#mem_bir#,
+						 					#mem_zip#, 
+						 					#mem_add1#, 
+						 					#mem_add2#,
+						 					#mem_hp#,   
+						 					#mem_mail#)
+	<!-- 저장한 데이타중 유일한 id값을 리턴한다 -->
+	<!-- insert완료후 queryForObject실행으로 결과를 리턴한다 -->
+	<selectKey keyProperty="mem_id" resultClass="String">
+		SELECT mem_id
+		FROM member2
+		WHERE mem_id = #mem_id#
+	</selectKey>
+</insert>
+
+</sqlMap>
+
+
+
+

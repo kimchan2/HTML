@@ -1,0 +1,97 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/mycss.css">
+<style>
+.box input[type=file]{
+   width : 200px;
+   background : lightblue;
+}
+img{
+   width : 150px;
+   height : 150px;
+   display : none;
+}
+</style>
+<script>
+  function readProc(){
+	   vfile =  document.querySelector('#file').files[0]
+	  //vfile이 File 객체다 
+	  
+	   mdate =   vfile.lastModifiedDate;
+	   mdate =  mdate.toLocaleString();
+	  
+	  
+	   res = "";
+	   res += `파일이름 : ${vfile.name} <br>`;
+	   res += `파일크기 : ${vfile.size} <br>`;
+	   res += `파일유형 : ${vfile.type} <br>`;
+	   res += `수정날짜 : ${mdate} <br>`;
+	   
+	   document.querySelector('#result1').innerHTML = res;
+	   
+	   //선택한 화일의 내용 가져오기 
+	   reader = new FileReader();
+	   
+	   if(vfile.name.match('jpg|gif|png|JPG|PNG|GIF')){
+		   reader.readAsDataURL(vfile);  //result에 저장   -> data:image
+	   }else {
+		  reader.readAsText(vfile, "UTF-8"); //result속성에 저장 - 
+	   }
+		   
+	   //끝까지 다  읽을 때 까지 기다린다 
+	   reader.onload = function(){
+		   document.querySelector("textarea").value = reader.result;
+		   
+		   //이미지가 맞느냐?
+		   if(reader.result.match('image')){
+			   //이미지를 표시 
+			   vimg =   document.querySelector('#imgview');
+			   vimg.setAttribute('src', reader.result);
+			   vimg.style.display = "block";
+		   }else{
+			   vimg.style.display = "none";
+		   }
+	   }
+	   
+  }
+</script>
+
+</head>
+<body>
+
+<div class="box">
+   <h2>1. fileapi 읽기/첨부하기   </h2>
+       첨부화일 값 가져오기 : files<br>
+    File객체를 리턴한다 <br>
+    File객체에서 정보를 얻는다 - <br>
+       이름name, 수정한 날짜lastModifiedDate , 크기size , 유형type<br>
+   
+   첨부된 화일을 내용 읽기<br>
+   FileReader객체 <br>
+    메소드<br>
+    readAsText(file객체, encoding)<br>
+    readAsDataURL(file객체)<br>
+    속성  <br>
+    result : 읽은 화일의 내용을 저장 하는 속성<br>
+    error :  오류 발생시 오류정보를 저장 하는 속성 <br>
+   <input type="file" id="file">
+   <input type="button" value="읽기" onclick="readProc()">
+   <br>
+   <textarea rows="10" cols="60"></textarea>
+   <br>
+      이미지 파일일 경우에만 이미지를 출력 <br>
+   <img id="imgview" src="../images/coffee1.jpg" alt=""><br>
+    
+   
+   <h2>파일 정보</h2>
+   <div id="result1"></div>
+</div>
+</body>
+</html>
+
+
+

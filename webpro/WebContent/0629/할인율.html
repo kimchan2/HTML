@@ -1,46 +1,140 @@
-
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
+<link rel="stylesheet" href="../css/mycss.css">
 <style>
+	div{
+		border: 0px; 
+	}
   img {
-    width : 100px;
-    height : 100px;
+    width : 200px;
+    height : 200px;
+    margin: 0px;
+    padding: 0px;
+  }
+  
+  #main div{
+     float: left;
+  }
+  .guess_box{
+  	text-align: center;
+  }
+  hr{
+  	clear: both;
   }
 </style>
+<script>
+//gbox에 대한 일괄 이벤트 등록
+window.onload = function(){
+	boxes = document.getElementsByClassName('gbox');
+	//boxes = document.querySelectorAll('.gbox');
+	
+	for(i=0; i<boxes.length ; i++){
+		//객체.addEventListener('이벤트 이름', 함수이름)
+		boxes[i].addEventListener('click',clickSales);
+	}
+}
 
+function clickSales(){
+	//id가 ps인 요소를 검색 
+	 //있으면 해당 요소를 지운다
+	 pid = document.querySelector('#ps');
+	 if(pid != null){
+		//a.removeChild(pid);
+		pid.parentNode.removeChild(pid);
+	 }
+	 random = Math.floor(Math.random()*6)+5;
+	 
+	 p = document.createElement("p");
+	 p.setAttribute('id','ps');
+	 
+	 tn = document.createTextNode(`할인율 : ${random}%`);
+
+	 p.appendChild(tn);//p태그 생성해서 text만 받고
+	 this.appendChild(p);//이건 아예 p받아보리기
+}
+	
+function proc1(t){
+    rand = Math.floor(Math.random()*6 + 5);
+    
+    ptag = document.createElement('p');
+    tnode = document.createTextNode(`할인률 : ${rand}%`);
+    ptag.appendChild(tnode);
+    
+    list = document.querySelectorAll('.guess_box');
+    
+    for (i = 0; i < list.length; i++) {
+         vlist = list[i].childNodes;
+         for (j = 2; j < vlist.length; j++) {
+            list[i].removeChild(vlist[j]);
+         }
+    }
+    t.appendChild(ptag);
+}
+
+function MouseOver(t) {
+	t.style.border = "4px solid orange";	
+}
+
+function MouseOut(t) {
+	t.style.border = "0px";	
+}
+
+</script>
 </head>
 <body>
 <pre>
 guess_box를 클릭하면 5 ~10 랜덤발생 
 p태그를 생성해서  guess_box에  &lt;p&gt;할인율 : 7% &lt;/p&gt; 추가 
-
-
-
 </pre>
 
 <h2>할인율 </h2>
-  
   <div id = "header"> <h3>선택하면 즐거운 일이..</h3></div>
   
   <div id="main">
-    <div class="guess_box">
-      <img src="../images/단풍.jpg">
+    <div onclick ="proc1(this)" class="guess_box">
+      <img src="../images/단풍.jpg" onmouseover="MouseOver(this)" onmouseout="MouseOut(this)">
     </div>
     
-    <div class="guess_box" >
-      <img src="../images/딸기스무디.jpg">
+    <div onclick ="proc1(this)" class="guess_box" >
+      <img src="../images/딸기스무디.jpg" onmouseover="MouseOver(this)" onmouseout="MouseOut(this)">
     </div>
     
-    <div class="guess_box" >
-      <img src="../images/대나무숲.jpg">
+    <div onclick ="proc1(this)" class="guess_box" >
+      <img src="../images/대나무숲.jpg" onmouseover="MouseOver(this)" onmouseout="MouseOut(this)">
     </div>
     
-    <div class="guess_box" >
+    <div onclick ="proc1(this)" class="guess_box" onmouseover="MouseOver(this)" onmouseout="MouseOut(this)">
       <img src="../images/아메리카노.jpg">
+    </div>
+  </div>
+  
+	<hr>
+	<br><br>
+	
+	<pre>
+		window.onload = function(){
+			일괄적으로 이벤트 등록
+			객체.addEventListener("이벤트 이름", 함수이름)
+		}
+	</pre>
+	<div id="main">
+    <div class="guess_box gbox">
+      <img src="../images/단풍.jpg" onmouseover="MouseOver(this)" onmouseout="MouseOut(this)">
+    </div>
+    
+    <div class="guess_box gbox" >
+      <img src="../images/딸기스무디.jpg" onmouseover="MouseOver(this)" onmouseout="MouseOut(this)">
+    </div>
+    
+    <div class="guess_box gbox" >
+      <img src="../images/대나무숲.jpg" onmouseover="MouseOver(this)" onmouseout="MouseOut(this)">
+    </div>
+    
+    <div class="guess_box gbox" >
+      <img src="../images/아메리카노.jpg" onmouseover="MouseOver(this)" onmouseout="MouseOut(this)">
     </div>
   </div>
 </body>

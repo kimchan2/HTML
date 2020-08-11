@@ -27,7 +27,9 @@ span{
 	/* background: rgba(233, 134, 200, 0.3) */
 	background: #f6d9f3;
 }
-.box input[type="button"], button[type="button"], .box input[type="file"], .box input[type="reset"]{
+.box input[type="button"], button[type="button"],
+.box input[type="file"], .box input[type="reset"],
+.box button[type="submit"]{
 	color: white;
 	background: blue;
 	font-weight: bold;

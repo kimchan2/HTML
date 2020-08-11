@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Insert title here</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="../css/mycss.css">
+<script src="../js/jquery-3.5.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<style>
+
+	select{
+		height: auto;
+	}
+
+</style>
+<script>
+
+	$(function(){
+		// lprod출력
+		// $.getJSON(url, data, success)
+		$.getJSON("/jqpro/LprodServlet", function(res) {
+		
+			code = "";
+			$.each(res, function(i) {
+				code += "<option value='" + res[i].gu + "'>" + res[i].nm + "</option>";
+				//code += $("<option>", {})
+			})
+			$("#lprod").html(code);
+			
+		})
+		
+		
+		// lprod를 선택하면 option value값인 lprod_gu를 서버로 보내 결과를 얻는다.
+		// click 또는 change
+		$("#lprod").on("change", function() {
+			guvalue = $(this).val();
+			
+			$.ajax({
+				url: "/jqpro/Prod.do",
+				data: "gu=" + guvalue,
+				type: "get",
+				dataType: "json",
+				error: function(xhr) {
+					alert("상태: " + xhr.status); // 404, 500, 200
+				},
+				success: function(res) {
+					$("#prod").empty();
+					$("#list").empty();
+					
+					if(res.sw == "ok"){
+						$.each(res.data, function(i) {
+							$("<option></option>", {
+								"value": res.data[i].id,
+								"text": res.data[i].name
+							}).appendTo("#prod")
+						})
+					}else{
+						$("<option></option>", {
+							"value": "0",
+							"text": "데이터 없음"
+						}).appendTo("#prod")
+						
+						$("<img>", {
+							"src": "../images/Anne-Marie(앤마리)-2002.jpg",
+							"width": "150px",
+							"heigth": "180px",
+							"title": "데이터 없지롱"
+						}).appendTo("#list")
+					}
+					/* $.each(res, function(i) {
+						$("<option></option>", {
+							"value": res[i].id,
+							"text": res[i].name,
+						}).appendTo("#prod")
+					}) */
+			}
+		})
+	})
+	
+	// prod를 선택하면 option value값인 prod_id를 서버로 보내서 결과를 얻는다
+	$("#prod").on("change", function() {
+		idvalue = $(this).val();
+		
+		$.ajax({
+			url: "/jqpro/Prod.do",
+			type: "post",
+			data: "id=" + idvalue,
+			dataType: "JSON",
+			error: function(xhr) {
+				alert("상태" + xhr.status);
+			},
+			success: function(res) {
+				code = "<table class='table table-striped' border='1'><th>항목</th><th>내용</th>";
+				code += "<tr><td>PROD_ID</td>";
+				code += "<td>" + res.id + "</td></tr>";
+				code += "<tr><td>PROD_NAME</td>";
+				code += "<td>" + res.name + "</td></tr>";
+				code += "<tr><td>PROD_LGU</td>";
+				code += "<td>" + res.lgu + "</td></tr>";
+				code += "<tr><td>PROD_BUYER</td>";
+				code += "<td>" + res.buyer + "</td></tr>";
+				code += "<tr><td>PROD_COST</td>";
+				code += "<td>" + res.cost + "</td></tr>";
+				code += "<tr><td>PROD_PRICE</td>";
+				code += "<td>" + res.price + "</td></tr>";
+				code += "<tr><td>PROD_SALE</td>";
+				code += "<td>" + res.sale + "</td></tr>";
+				code += "<tr><td>PROD_OUTLINE</td>";
+				code += "<td>" + res.outline + "</td></tr>";
+				code += "<tr><td>PROD_DETAIL</td>";
+				code += "<td>" + res.detail + "</td></tr>";
+				code += "</table>";
+				$("#list").html(code);
+			}
+ 			
+			
+		})
+		
+	})
+	
+	
+})
+</script>
+</head>
+<body>
+
+	<div class="box">
+		<h2>1. lprod, prod 테이블</h2>
+		첫 번째 SELECT에는 lprod의 제품목록이 출력<br>
+		두 번째 SELECT에는 lprod의 gu값과 일치하는 상품목록을 prod테이블에서 가져온다.<br>
+		두 번째 SELECT에서 상품을 선택하면 prod_id를 파라미터로 하는 항목의 상세 보기
+		
+		<div class="container" id="result1">
+		
+		    <label for="sel1">Lprod제품 목록</label>
+			<select class="form-control" id="lprod">
+			
+			</select>
+			
+			<br>
+			
+		    <label for="sel2">prod제품 목록</label>
+			<select class="form-control" id="prod">
+			
+			</select>
+		
+			<div id="list"></div>
+			
+		</div>
+		
+	</div>
+</body>
+</html>

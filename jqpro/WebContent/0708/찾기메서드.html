@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+.ancestors * { 
+  display: block;
+  border: 2px solid lightgrey;
+  color: lightgrey;
+  padding: 5px;
+  margin: 15px;
+}
+.ancestors input[type=button]{
+   display : inline;
+   color : black;
+   background : orange;
+   margin : 5px;
+   width : 150px;
+   height : 40px;
+}
+.ancestors p{
+   font-size : 1.5em;
+   color : black;
+   border : none;
+}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+   
+  $('#parent').on('click', function(){
+     $("#d1 span").parent().css({"color": "red", "border": "2px solid red"});     
+  })
+  
+  $('#ps').on('click',function(){
+     $("#d1 span").parents().css({"color": "green", "border": "2px solid green"});
+  })
+  $('#ps_sel').on('click',function(){
+     $("#d1 span").parents("ul").css({"color": "blue", "border": "2px solid blue"});
+  })
+  $('#ps_unt').on('click',function(){
+     $("#d1 span").parentsUntil("#d1").css({"color": "yellow", "border": "2px solid yellow"});
+  })
+  
+  $('#find').on('click', function(){
+     $('#d2').find('span').css({"color": "blue", "border": "2px solid blue"});
+  })
+});
+</script>
+</head>
+
+<body class="ancestors">body (great-great-grandparent)
+  <p> span을 기준으로 부모, 조상 찾기
+  $('span').parent()<br>
+  $('span').parents()<br>
+  $('span').parent("ul")<br>
+  $('span').parentUntil('#d1')<br>
+  <div id="d1" style="width:500px;">div (great-grandparent)
+    <ul>ul (grandparent)  
+      <li>li (direct parent)
+        <span>span</span>
+      </li>
+    </ul>   
+  </div>
+  <input id="parent" type="button" value="parent">
+  <input id="ps" type="button" value="parents">
+  <input id="ps_sel" type="button" value="parents_sel">
+  <input id="ps_unt" type="button" value="parents_unt">
+  <hr>
+  
+  <p> #d2를 기준으로 자식, 후손 찾기<br>
+  $('#d2').find('span')<br>
+  <div id="d2" style="width:500px;">div (great-grandparent)
+    <ul>ul (grandparent)  
+      <li>li (direct parent)
+        <span>span</span>
+      </li>
+    </ul>   
+  </div>
+  <input id="find" type="button" value="find">
+  
+  <hr>
+  
+</body>
+
+</html>

@@ -1,0 +1,23 @@
+@CHARSET "UTF-8";
+
+#pagegroup ul{
+	float: left;
+	margin: 10px;
+}
+
+#pagegroup{
+	margin-left: 20%;
+}
+
+#btngroup{
+	margin-left: 90%;
+}
+
+.rep{
+	
+	background: pink;
+	height: auto;
+	border: 1px solid gray;
+	margin-top: 2px;
+	padding: 3px;
+}

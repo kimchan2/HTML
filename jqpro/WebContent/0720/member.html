@@ -1,0 +1,333 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">  
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="../js/jquery.serializejson.min.js"></script>
+
+
+<script>
+ $(function(){
+	  $('#btnid').on('click', function(){
+		 //입력한 id 값
+		 idvalue = $('#id').val();
+		 
+		 $.ajax({ 
+			 url : '/jqpro/IDCheck',
+			 type : 'post',
+			 data : { "id" : idvalue },
+			 success : function(res){
+				 $('#idchk').html(res.sw).css('color', 'red') ;
+			 },
+			 error : function(xhr){
+				 alert("상태 : "  + xhr.status); //500, 200, 404
+			 },
+			 dataType : 'json'
+		 })
+		 
+	  })
+	  
+	  
+	  //번호검색 
+	 $('#myBtn').on('click', function(){
+		 window.open("zipSearch.html", "zipsearch" , "width=500 height=700");
+	 }) 
+	 
+	 //제출 /전송/가입신청
+	 $('#btnjoin').on('click', function(){
+		 /* //입력한 모든 값을 가져온다 - val()
+		 vid =  $('#id').val();
+		 vname = $('#name').val();
+		 vhp =  $('#hp').val();
+		 vmail = $('#mail').val();
+		 vbir = $('#bir').val();
+		 vpass = $('#pass').val();
+		 vzip = $('#zip').val();
+		 vadd1 = $('#add1').val();
+		 vadd2 = $('#add2').val();
+		 
+		 indata = {"mem_id"  :  vid,   "mem_name" : vname , 
+			      "mem_pass" : vpass,  "mem_hp" : vhp,
+			      "mem_mail" : vmail,  "mem_bir" : vbir,
+			      "mem_zip"  : vzip,   "mem_add1" : vadd1,
+			      "mem_add2" : vadd2 };
+		  */
+		  
+		  //indata = $('#ff').serialize();
+		  indata = $('#ff').serializeJSON();
+		  
+		  console.log(indata);
+		  
+		 $.ajax({
+			 url : '/jqpro/InsertMember',
+			 method : 'post',
+			 data  : indata,
+			 success : function(res){
+				  $('#joinres').html(res.sw).css('color', 'red');
+			 },
+			 error : function(xhr){
+				 alert("상태 : " + xhr.status);
+			 },
+			 dataType : 'json'
+		 })
+
+	 })
+	 //////////// Modal창에서 동이름 검색후 입력 눌렀을 때
+	 $("input:button").on("click", function() {
+			// 입력한 동 이름 가져오기
+			dongValue = $("#dong").val();
+			
+			$.ajax({
+				url: "/jqpro/DongDong",
+				type: "post",
+				data: "dong=" + dongValue,
+				success: function(res) {
+					code = "<table border='1'>";
+					code += "<tr><td>시도</td><td>번지</td><td>우편번호</td></tr>"
+					$.each(res, function(i) {
+						code += "<tr class=ziptr><td>" + res[i].Addr + "</td>";
+						code += "<td>" + res[i].Bunji + "</td>";
+						code += "<td>" + res[i].Zipcode + "</td></tr>"
+					})
+					code += "</table>";
+					$("#result1").html(code);
+				},
+				error: function(xhr) {
+					alert("상태 : " + xhr.status);
+				},
+				dataType: "JSON"
+				
+			})
+		})
+		
+		/* 검색된 주소 리스트에서 하나를 선택하는 이벤트 - delegate방식 */
+		$("#result1").on("click", ".ziptr", function() {
+			addr = $("td:eq(0)",this).text();
+			code = $("td:eq(2)",this).text();
+			
+			$("#zip").val(code);
+			$("#add1").val(addr);
+			
+			$("#dong").val("");
+			$("#result1").empty();
+			
+			$("#myModal").modal("hide");
+		})
+ })
+</script>
+ <style>
+  .container{text-align:center;   }
+  .form-horizontal{  width:100%;   box-sizing:border-box; } 
+	  
+   fieldset {border: 10px solid #cacace; background: #fff; width:90%;} 
+  
+	.form-group {
+	        text-align:left; 
+	        padding: 8px; 
+	        border-bottom: 1px dashed #ababab;
+	 }
+	 
+    .form-group label.control-label { 
+	          /* background: #efefef;  */ 
+	          width: 120px;
+	          display: inline-block; 
+	          text-align: center; 
+	          box-sizing:border-box;
+	 }
+	
+	.form-group input, .form-group select  {  
+	         box-sizing:border-box;  
+	        margin-left : 20px;
+	        padding: 10px 15px;  
+	        border-radius: 10px; 
+	        border: 0 none;  
+	        border : 1px solid gray;
+	 }
+	 .form-group select{
+	      width : 200px;
+	 }
+	.form-group input#add1, .form-group input#add2{
+	           width:calc(90% - 127px);
+	           box-sizing:border-box;
+	 }
+	.form-group input.addr{
+	          margin : 5px 20px; 
+	          margin-right: 0px; 
+	}
+	.form-group:last-child {border-bottom: 0 none;} 
+	.form-group .btn{
+		   background:#fff; 
+		   font-weight: bold;
+		   border:1px solid #8888ff; 
+		   color:blue; 
+		   margin-left: 10px;
+		   padding: 5px 10px 8px; 
+		   border-radius: 50px; 
+		 /*   box-sizing:border-box; */
+	 } 
+	
+	.btn-wrap{margin-top:30px; text-align: left;}
+	.btn-wrap .btn{ 
+	        width:20%; 
+	        padding:10px;
+	        font-size:1.0em; 
+	      /*   box-sizing:border-box; */
+	        color: white;
+	        font-weight: bold; 
+	        background: Dodgerblue; 
+	        border:  none;  
+	        border-radius: 50px;
+	  }
+	.btn-wrap .btn.btn-default{background: DimGray;}
+  </style>
+<style>
+  span {
+  /*   color : red; */
+    font-size : 1.5em;
+  }
+  td{
+    text-align : center;
+  }
+  
+  .ziptr:hover{
+     background : lime;
+  }
+</style>
+
+</head>
+<body>
+
+<div class="container">
+  <h2>회원 가입</h2>
+ <form id="ff"  class="form-horizontal"   >
+ 
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="id">아이디:</label>
+      <div class="col-sm-3">
+        <input type="text" class="form-control" id="id" placeholder="Enter id" name="mem_id">
+      </div>
+      <button id="btnid"  type="button" class="btn btn-warning">아이디중복</button>
+      <span id="idchk"></span>
+    </div> 
+    
+    
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="name">이름:</label>
+      <div class="col-sm-3">
+        <input type="text" class="form-control" id="name" placeholder="Enter name" name="mem_name">
+      </div>
+    </div>
+     
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="pass">비밀번호:</label>
+      <div class="col-sm-3">          
+        <input type="password" class="form-control" id="pass" placeholder="Enter password" name="mem_pass">
+      </div>
+    </div>
+     
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="bir">생일:</label>
+      <div class="col-sm-3">
+        <input type="text" class="form-control" id="bir" name="mem_bir">
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="hp">전화번호:</label>
+      <div class="col-sm-3">
+        <input type="text" class="form-control" id="hp"  name="mem_hp">
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="mail">이메일:</label>
+      <div class="col-sm-3">
+        <input type="text" class="form-control" id="mail"  name="mem_mail">
+      </div>
+    </div>
+    
+     <div class="form-group">
+      <label class="control-label col-sm-2" for="zip">우편번호:</label>
+      <div class="col-sm-3">          
+        <input type="text" class="form-control" id="zip" placeholder="Enter zip" name="mem_zip">
+      </div>
+    
+    <!-- <button type="button" class="btn btn-warning" id="myBtn">번호검색</button> -->
+    <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-warning" >번호검색</button>
+    </div>
+    
+     <div class="form-group">
+       <label class="control-label col-sm-2" for="add1">주소:</label>
+       <div class="col-sm-7">          
+         <input type="text" class="form-control" id="add1" placeholder="Enter add1" name="mem_add1">
+       </div>
+    </div>
+    
+     <div class="form-group">
+      <label class="control-label col-sm-2" for="add2">상세주소:</label>
+      <div class="col-sm-7">          
+        <input type="text" class="form-control" id="add2" placeholder="Enter add2" name="mem_add2">
+      </div>
+    </div>
+
+    <div class="form-group">        
+      <div class="col-sm-offset-2 col-sm-10">
+        <button type="button" id="btnjoin" class="btn btn-primary btn-lg">Submit</button>
+        <span id="joinres"></span>
+      </div>
+    </div>
+    
+  </form>
+</div>
+
+
+
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">주소 검색</h4>
+      </div>
+      <div class="modal-body">
+           <div class="box">
+			     동입력 <input type="text" id="dong">
+			   <input type="button" value="확인" >
+			   <div id="result1"></div>
+			</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

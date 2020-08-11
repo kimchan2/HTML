@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/mycss.css">
+<script src="../js/jquery-3.5.1.min.js"></script>
+<style>
+</style>
+<script>
+	function proc1() {
+		// 전체 p를 선택
+		$("p").css("color", "blue");
+	}
+	
+	function proc2() {
+		// 1번째 form의 p 선택
+		$("p", document.forms[1]).css("font-size", "2.0em");
+	}
+	$(function() {
+		$(".box div").on("click", function() {
+			// this는 현재 동작을 실행하는 객체
+			// click을 하는 div가 this다
+			
+			cr = Math.floor(Math.random()*256);
+			cg = Math.floor(Math.random()*256);
+			cb = Math.floor(Math.random()*256);
+			
+			$("p", this).css("color", `rgb(${cr}, ${cg}, ${cb})`);
+		})
+	})
+	
+</script>
+</head>
+<body>
+
+	<div class="box">
+		<h2>컨텍스트</h2>
+		$(선택자, 컨텍스트) : 컨텍스트 범위에서 선택자를 검색한다.<br>
+		$("p") : 전체 p선택<br>
+		$("p", document.forms[2]) : 1번째 form의 p선택<br>
+		$("p", this) : 현재 수행중인 객체를 this로 해서 내부의 p태그를 선택<br>
+		<input type="button" value="모든 p선택" onclick="proc1()">
+		<input type="button" value="1번째 form의 p선택" onclick="proc2()">
+		<div>
+			<p>코로나가 없는 행복한 세상~</p>
+		</div>
+		
+		<form action="">
+			<p>오늘은 목요일 내일은 금요일</p>
+		</form>
+		
+		<form action="">
+			<p>여기는 form. 오늘 뭐 먹지??</p>
+		</form>
+		
+		<form action="">
+			<p>무궁화 꽃이 피었습니다</p>
+		</form>
+		
+		<div>
+			<p>이쁜 사람 다 나와라~~</p>
+		</div>
+		
+	</div>
+</body>
+</html>

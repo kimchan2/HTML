@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/mycss.css">
+<style>
+
+	#main{
+		width: auto;
+		height: 170px;
+	}
+	img{
+		width: 150px;
+		height: 150px;
+		float: left;
+		margin: 0px;
+		padding: 0px;
+	}
+	#main div{
+		margin: 0px;
+		padding: 0px;
+		width: auto;
+		height: auto;
+		float: left;
+	}
+</style>
+<script>
+	
+	window.onload = function() {
+		boxes = document.getElementsByClassName('guess_box');
+		//boxes = document.querySelectorAll('.gbox');
+		imgs = document.getElementsByTagName("img");
+		
+		for(i=0; i<imgs.length; i++){
+			imgs[i].addEventListener("mouseover", imgOver);
+			imgs[i].addEventListener("mouseout", imgOut);
+		}
+		
+		
+		for(i=0; i<boxes.length ; i++){
+			//객체.addEventListener('이벤트 이름', 함수이름)
+			boxes[i].addEventListener('click',clickSales);
+		}
+	}
+	
+	function imgOver() {
+		this.style.border = "4px solid red";
+	}
+	function imgOut() {
+		this.style.border = "0px";
+	}
+	
+	function clickSales(){
+		//id가 ps인 요소를 검색 
+		 //있으면 해당 요소를 지운다
+		 pid = document.querySelector('#ps');
+		 if(pid != null){
+			//a.removeChild(pid);
+			pid.parentNode.removeChild(pid);
+		 }
+		 random = Math.floor(Math.random()*6)+5;
+		 
+		 p = document.createElement("p");
+		 p.setAttribute('id','ps');
+		 p.style.padding = "0px";
+		 p.style.margin = "0px";
+		 
+		 tn = document.createTextNode(`할인율 : ${random}%`);
+
+		 p.appendChild(tn);//p태그 생성해서 text만 받고
+		 this.appendChild(p);//이건 아예 p받아보리기
+	}
+	
+	function proc1() {
+		rid = document.getElementById("result1");
+		rid.style.backgroundColor = "yellow";
+	}
+	
+	function MouseOver() {
+		rid.style.border = "2px solid red";
+	}
+
+	function MouseOut() {
+		rid.style.border = "0px";
+	}
+	
+	function MouseDown() {
+		btn = document.querySelector("#but");
+		og1 = btn.style.width;
+		og2 = btn.style.fontSize;
+		btn.style.fontSize = "1.5em";
+		btn.style.width = "150px";
+	}
+	
+	function MouseUp() {
+		btn.style.width = og1;
+		btn.style.fontSize = og2;
+	}
+	
+	
+	
+</script>
+</head>
+<body>
+
+	<div class="box">
+		<h2>1. 이벤트 mouseover/mouseout</h2>
+		<input type="button" value="확인" onclick="proc1()">
+		<div id="result1" onmouseover="MouseOver()" onmouseout="MouseOut()"></div>
+	</div>
+
+	<div class="box">
+		<h2>2. 이벤트 mousedown/mouseup</h2>
+		확인 버튼을 누르면 : button의 크기를 증가<br>
+		누른 버튼을 떼면 : 원래 크기로 돌아온다<br>
+		<input type="button" id="but" value="확인" onmousedown="MouseDown()" onmouseup="MouseUp()">
+		<div id="result2"></div>
+	</div>
+
+	<div id="out" class="box">
+		<h2>3. 이벤트 mousedown/mouseup</h2>
+		guess_box에 대한 일괄 이벤트 등록 - click<br>
+		img에 대한 일괄 이벤트 등록 - onmouseover, onmouseout
+		<input type="button" id="but" value="확인">
+		<div id="result3"></div>
+		<div id="main">
+		    <div class="guess_box">
+		    	<img src="../images/단풍.jpg">
+		    </div>
+		    
+		    <div class="guess_box">
+		    	<img src="../images/딸기스무디.jpg">
+		    </div>
+		    
+		    <div class="guess_box">
+		    	<img src="../images/대나무숲.jpg">
+		    </div>
+		    
+		    <div class="guess_box">
+		    	<img src="../images/아메리카노.jpg">
+		    </div>
+	  	</div>
+	</div>
+</body>
+</html>

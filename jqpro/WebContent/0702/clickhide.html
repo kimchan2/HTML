@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/mycss.css">
+<script src="../js/jquery-3.5.1.min.js"></script>
+<style>
+</style>
+<script>
+	// 1번과  javascript방식으로 호출하는 함수
+	function proc1(t) {
+		t.style.display = "none";
+			
+		// $(t).css("display", "none");
+		//$(t).hide();
+			
+	}
+	
+// 	window.onload = function() {
+// 		hh2 = document.querySelectorAll(".hh2");
+// 		for(i=0; i<hh2.length; i++){
+// 			hh2[i].addEventListener("click", proc2);
+// 		}
+// 		$(".hh3").on("click", function() {
+// 			$(this).hide();
+// 		})
+// 	}
+	function proc2() {
+		this.style.display = "none";
+//  		$(this).hide();
+	}
+	
+	$(document).ready(function() {
+
+		
+		hh2 = document.querySelectorAll(".hh2"); // dom 객체 변수
+		hh2[3].style.color = "red"; // dom 객체 스타일 지정
+		$(hh2).eq(1).css("color", "blue"); // hh2를 $로 감싸면 jquery 객체 스타일 지정 가능  // $(hh2).eq(1) 1번째만
+		
+		// 2번에서 javascript 일괄 이벤트 등록
+		hh2 = $(".hh2"); // jquery 객체 변수
+		for(i=0; i<hh2.length; i++){
+			hh2[i].addEventListener("click", proc2); // [i]를 붙이면 dom 객체로 바뀜
+// 			$(hh2).eq(i).addEventListener("click", proc2); // jquery 객체는 addEventListener 사용불가
+		}
+		
+		// 3번 jQuery방식으로 .hh3에 대한 클릭이벤트 등록
+		$(".hh3").on("click", function() {
+			$(this).hide();
+		})
+		
+	})
+	
+</script>
+</head>
+<body>
+
+	<div class="box">
+		<h2>1. 클릭하면 사라지기</h2>
+		각각의 h1요소에서 onclick="proc1(this)"<br>
+		<div id="result1">
+			<h1 onclick="proc1(this)">클릭하면 사라집니다1</h1>
+			<h1 onclick="proc1(this)">클릭하면 사라집니다2</h1>
+			<h1 onclick="proc1(this)">클릭하면 사라집니다3</h1>
+			<h1 onclick="proc1(this)">클릭하면 사라집니다4</h1>
+			<h1 onclick="proc1(this)">클릭하면 사라집니다5</h1>
+			<h1 onclick="proc1(this)">클릭하면 사라집니다6</h1>
+			<h1 onclick="proc1(this)">클릭하면 사라집니다7</h1>
+			<h1 onclick="proc1(this)">클릭하면 사라집니다8</h1>
+			<h1 onclick="proc1(this)">클릭하면 사라집니다9</h1>
+			<h1 onclick="proc1(this)">클릭하면 사라집니다10</h1>
+		</div>
+	</div>
+
+	<div class="box">
+		<h2>2. 클릭하면 사라지기</h2>
+		java script방식으로 h1요소를 일괄이벤트 등록<br>
+		hh2 = document.querySelectorAll(".hh2")<br>
+		for(i=0; i &lt; hh2.length; i++){<br>
+			hh2[i].addEventListener("click", proc1);<br>
+		}<br>
+		
+		<div id="result2">
+			<h1 class="hh2">클릭하면 사라집니다1</h1>
+			<h1 class="hh2">클릭하면 사라집니다2</h1>
+			<h1 class="hh2">클릭하면 사라집니다3</h1>
+			<h1 class="hh2">클릭하면 사라집니다4</h1>
+			<h1 class="hh2">클릭하면 사라집니다5</h1>
+			<h1 class="hh2">클릭하면 사라집니다6</h1>
+			<h1 class="hh2">클릭하면 사라집니다7</h1>
+			<h1 class="hh2">클릭하면 사라집니다8</h1>
+			<h1 class="hh2">클릭하면 사라집니다9</h1>
+			<h1 class="hh2">클릭하면 사라집니다10</h1>
+		</div>
+	</div>
+
+	<div class="box">
+		<h2>3. 클릭하면 사라지기(jQuery)</h2>
+		$(".hh3").on("click", function(){});<br>
+		
+		<div id="result3">
+			<h1 class="hh3">클릭하면 사라집니다1</h1>
+			<h1 class="hh3">클릭하면 사라집니다2</h1>
+			<h1 class="hh3">클릭하면 사라집니다3</h1>
+			<h1 class="hh3">클릭하면 사라집니다4</h1>
+			<h1 class="hh3">클릭하면 사라집니다5</h1>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/mycss.css">
+<script src="../js/jquery-3.5.1.min.js"></script>
+<style>
+
+	img{
+		width: 100px;
+		height: 100px;
+		border-radius: 50%;
+		margin: 10px;
+	}
+
+</style>
+<script>
+
+	$(function(){
+		$("#start").on("click", function() {
+			$("img").css("border", "none");
+			a = setInterval(function() {
+				$("img:first").appendTo("#result1");
+			}, 1000)
+			
+			$(this).css("display", "none");
+		})
+		
+		$("#stop").on("click", function() {
+			clearInterval(a);
+			index = Math.floor(Math.random()* $("img").length );
+			
+			$(`img:eq(${index})`).css("border", "4px solid orange");
+			$("#start").show();
+		})
+		
+	})
+
+</script>
+</head>
+<body>
+
+	<div class="box">
+		<h2>1. 진행중인 이벤트</h2>
+		시작버튼 클릭시 이미지를 회전시킨다<br>
+		시작버튼을 클릭하고 난후 시작버튼은 안보임으로 설정한다<br>
+		종료버튼 클릭시 랜덤을 이용해서 당첨된 물품에 테두리를 <br>
+		부여한다 . 이때 시작버튼은 다시 보임으로 설정한다.<br>
+		다시 시작버튼 클릭할때는 테두리를 삭제하고 반복해서 실행한다<br> 
+		
+		<input id="start" type="button" value="시작">
+		<input id="stop" type="button" value="종료">
+		<div id="result1">
+			<img src="../images/aa.png" alt="">
+			<img src="../images/Anne-Marie(앤마리)-2002.jpg" alt="">
+			<img src="../images/ccc.jpg" alt="">
+			<img src="../images/Chrysanthemum.jpg" alt="">
+			<img src="../images/circle-dot-o.png" alt="">
+			<img src="../images/cloud03.jpg" alt="">
+		</div>
+	</div>
+</body>
+</html>

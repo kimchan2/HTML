@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/mycss.css">
+<style>
+	img{
+		width: 100px;
+		height: 100px;
+	}
+</style>
+<script>
+
+	function start(t) {
+		tt = t;
+		a = setInterval(function() {
+			// 0번째 이미지를 선택 - img태그를 검색
+			// child = document.querySelector("img");
+			child = document.getElementsByTagName("img")[0];
+			
+			// 부모인 result1을 검색
+			parent = document.getElementById("result1");
+			
+			// 부모요소에 자식요소를 append한다
+			parent.appendChild(child);
+			
+		}, 1000);
+		
+		// 시작 버튼을 안보이게 한다
+		tt.style.display = "none";
+	}
+	
+	function stop() {
+		clearInterval(a);
+		tt.style.display = "inline";
+	}
+
+</script>
+</head>
+<body>
+
+	<div class="box">
+		<h2>1. 이미지 회전</h2>
+		시작버튼 클릭하면 첫번째 이미지를 선택하여 맨 마지막위치로 이동<br>
+		1초마다 한번씩 반복적으로 수행한다<br>
+		종료버튼을 클릭하면 실행을 멈춘다<br>
+		<input type="button" value="시작" onclick="start(this)">
+		<input type="button" value="종료" onclick="stop()">
+		<div id="result1">
+			<img src="../images/카페라떼.jpg" alt="">
+			<img src="../images/카라멜마키아또.jpg" alt="">
+			<img src="../images/카푸치노.jpg" alt="">
+			<img src="../images/커피.jpg" alt="">
+			<img src="../images/커피2.jpg" alt="">
+			<img src="../images/핫초코.jpg" alt="">
+		</div>
+	</div>
+</body>
+</html>

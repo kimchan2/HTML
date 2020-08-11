@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+			PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+			"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+			
+<sqlMap namespace="board">
+
+	<select id="selectAll" resultClass="boardVO">
+		SELECT *
+		FROM board1
+		ORDER BY seq DESC
+	</select>
+	
+	<select id="selectByPage" resultClass="boardVO" parameterClass="map">
+		SELECT A.*
+		FROM ( SELECT rownum as rnum, B.* 
+			   FROM ( SELECT * 
+			          FROM board1
+			          ORDER BY seq desc ) B
+    		  <![CDATA[
+    		   WHERE rownum <= #end# ) A
+		WHERE rnum >= #start#
+    		  ]]>
+	</select>
+<!-- <![CDATA[]]는 <, > 때문에 쓴다 -->
+
+	<select id="getTotalCount" resultClass="int">
+		SELECT COUNT(*)
+		FROM board1
+	</select>
+	
+	<insert id="insertBoard" parameterClass="boardVO">
+		INSERT INTO board1 (seq, subject, writer, mail,
+							password, content, hit, wip, wdate)
+							VALUES(board1_seq.NEXTVAL, #subject#, #writer#, #mail#,
+							#password#, #content#, 0, #wip#, SYSDATE)
+							
+		<selectKey keyProperty="seq" resultClass="int">
+			SELECT board1_seq.CURRVAL
+			FROM dual
+		</selectKey>
+	</insert>
+	
+	<!-- 댓글 저장 -->
+	<insert id="insertReply" parameterClass="replyVO">
+		INSERT INTO reply VALUES (reply_seq.NEXTVAL, #bonum#, #name#, #cont#, SYSDATE)
+		
+		<selectKey keyProperty="renum" resultClass="int">
+			SELECT reply_seq.CURRVAL
+			FROM dual
+		</selectKey>
+	</insert>
+	
+	<!-- 댓글 조회 -->
+	<select id="listReply" parameterClass="int" resultClass="replyVO">
+		SELECT *
+		FROM reply
+		WHERE bonum = #bonum#
+	</select>
+	
+	<!-- 댓글 삭제 -->
+	<delete id="deleteReply" parameterClass="int">
+		DELETE reply WHERE renum = #renum#
+	</delete>
+	
+	<!-- 댓글 수정 -->
+	<update id="updateReply" parameterClass="replyVO">
+		UPDATE reply SET cont = #cont#, redate = SYSDATE
+		WHERE renum = #renum#
+	</update>
+	
+</sqlMap>

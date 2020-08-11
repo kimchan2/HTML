@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/mycss.css">
+<script src="../js/jquery-3.5.1.min.js"></script>
+<style>
+
+	.ziptr:HOVER{
+		background: lime;
+	}
+
+</style>
+<script>
+
+	$(function(){
+		$("input:button").on("click", function() {
+			// 입력한 동 이름 가져오기
+			dongValue = $("#dong").val();
+			
+			$.ajax({
+				url: "/jqpro/DongDong",
+				type: "post",
+				data: "dong=" + dongValue,
+				success: function(res) {
+					code = "<table border='1'>";
+					code += "<tr><td>시도</td><td>번지</td><td>우편번호</td></tr>"
+					$.each(res, function(i) {
+						code += "<tr class=ziptr><td>" + res[i].Addr + "</td>";
+						code += "<td>" + res[i].Bunji + "</td>";
+						code += "<td>" + res[i].Zipcode + "</td></tr>"
+					})
+					code += "</table>";
+					$("#result1").html(code);
+				},
+				error: function(xhr) {
+					alert("상태 : " + xhr.status);
+				},
+				dataType: "JSON"
+				
+			})
+		})
+		
+		/* 검색된 주소 리스트에서 하나를 선택하는 이벤트 - delegate방식 */
+		$("#result1").on("click", ".ziptr", function() {
+			addr = $("td:eq(0)",this).text();
+			code = $("td:eq(2)",this).text();
+			
+			$("#zip", opener.document).val(code);
+			$("#add1", opener.document).val(addr);
+			
+			window.close();
+		})
+	})
+
+</script>
+</head>
+<body>
+
+	<div class="box">
+		동입력<input type="text" id="dong">
+		<input type="button" value="확인">
+		<div id="result1"></div>
+	</div>
+</body>
+</html>
